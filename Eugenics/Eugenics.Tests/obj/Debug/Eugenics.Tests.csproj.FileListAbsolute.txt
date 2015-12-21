@@ -39,3 +39,15 @@ C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\Sy
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\obj\Debug\Eugenics.Tests.csprojResolveAssemblyReference.cache
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\obj\Debug\Eugenics.Tests.dll
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\obj\Debug\Eugenics.Tests.pdb
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\Microsoft.Owin.dll
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\Owin.dll
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.dll
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.WebApi.dll
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\System.Web.Http.Owin.dll
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\Microsoft.Owin.xml
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.pdb
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.xml
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.WebApi.pdb
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\LightInject.WebApi.xml
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics.Tests\bin\Debug\System.Web.Http.Owin.xml
