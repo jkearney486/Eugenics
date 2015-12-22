@@ -12,8 +12,8 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[Support](
-	[CharacterID] [bigint] NOT NULL,
-	[SupportID] [bigint] NOT NULL
+	[CharacterId] [int] NOT NULL,
+	[SupportId] [int] NOT NULL
 ) ON [PRIMARY]
 
 GO
@@ -21,15 +21,15 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [dbo].[Support]  WITH CHECK ADD  CONSTRAINT [FK_Support_Character] FOREIGN KEY([CharacterID])
-REFERENCES [dbo].[Character] ([CharacterID])
+ALTER TABLE [dbo].[Support]  WITH CHECK ADD  CONSTRAINT [FK_Support_Character] FOREIGN KEY([CharacterId])
+REFERENCES [dbo].[Character] ([Id])
 GO
 
 ALTER TABLE [dbo].[Support] CHECK CONSTRAINT [FK_Support_Character]
 GO
 
-ALTER TABLE [dbo].[Support]  WITH CHECK ADD  CONSTRAINT [FK_Support_PairCharacter] FOREIGN KEY([SupportID])
-REFERENCES [dbo].[Character] ([CharacterID])
+ALTER TABLE [dbo].[Support]  WITH CHECK ADD  CONSTRAINT [FK_Support_PairCharacter] FOREIGN KEY([SupportId])
+REFERENCES [dbo].[Character] ([Id])
 GO
 
 ALTER TABLE [dbo].[Support] CHECK CONSTRAINT [FK_Support_PairCharacter]

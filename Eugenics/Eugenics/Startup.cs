@@ -3,6 +3,8 @@ using Owin;
 using System.Web.Http;
 using LightInject;
 using Newtonsoft.Json.Serialization;
+using Eugenics.Dao.Interface;
+using Eugenics.Dao.Dapper;
 
 [assembly: OwinStartup(typeof(Eugenics.Startup))]
 
@@ -17,6 +19,13 @@ namespace Eugenics
 
             configuration.MapHttpAttributeRoutes();
 
+            // Convention-based routing.
+            configuration.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
             // camelCase Json.NET
             configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
@@ -24,7 +33,7 @@ namespace Eugenics
             var container = new ServiceContainer();
 
             container.RegisterApiControllers();
-            //container.Register<IUserDao, DapperUserDao>(new PerContainerLifetime());
+            container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
             
             container.EnableWebApi(configuration);
             

@@ -9,21 +9,21 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[ClassPromotion](
-	[BaseClassID] [int] NOT NULL,
-	[PromotedClassID] [int] NOT NULL,
+	[BaseClassId] [int] NOT NULL,
+	[PromotedClassId] [int] NOT NULL,
 ) ON [PRIMARY]
 
 GO
 
-ALTER TABLE [dbo].[ClassPromotion]  WITH CHECK ADD  CONSTRAINT [FK_ClassPromotion_Base] FOREIGN KEY([BaseClassID])
-REFERENCES [dbo].[Class] ([ClassID])
+ALTER TABLE [dbo].[ClassPromotion]  WITH CHECK ADD  CONSTRAINT [FK_ClassPromotion_Base] FOREIGN KEY([BaseClassId])
+REFERENCES [dbo].[Class] ([Id])
 GO
 
 ALTER TABLE [dbo].[ClassPromotion] CHECK CONSTRAINT [FK_ClassPromotion_Base]
 GO
 
-ALTER TABLE [dbo].[ClassPromotion]  WITH CHECK ADD  CONSTRAINT [FK_ClassPromotion_Promoted] FOREIGN KEY([PromotedClassID])
-REFERENCES [dbo].[Class] ([ClassID])
+ALTER TABLE [dbo].[ClassPromotion]  WITH CHECK ADD  CONSTRAINT [FK_ClassPromotion_Promoted] FOREIGN KEY([PromotedClassId])
+REFERENCES [dbo].[Class] ([Id])
 GO
 
 ALTER TABLE [dbo].[ClassPromotion] CHECK CONSTRAINT [FK_ClassPromotion_Promoted]

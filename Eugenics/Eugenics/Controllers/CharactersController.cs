@@ -1,20 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using Eugenics.Dao.Interface;
+using Eugenics.Models;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace Eugenics.Controllers
 {
     public class CharactersController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly ICharacterDao _characterDao;
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        public CharactersController(ICharacterDao characterDao)
         {
-            return "value";
+            _characterDao = characterDao;
+        }
+        
+        public IEnumerable<Character> Get()
+        {
+            return _characterDao.GetAll();
+        }
+        
+        public Character Get(int id)
+        {
+            return _characterDao.GetById(id);
         }
     }
 }

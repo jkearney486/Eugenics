@@ -12,7 +12,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[Character](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](50) NULL,
 	[Gender] [varchar](50) NULL,
 	[ModStr] [int] NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Character](
 	[ModLck] [int] NOT NULL,
 	[ModDef] [int] NOT NULL,
 	[ModRes] [int] NOT NULL,
-	[ParentID] [bigint] NULL,
+	[ParentID] [int] NULL,
  CONSTRAINT [PK_Character] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
