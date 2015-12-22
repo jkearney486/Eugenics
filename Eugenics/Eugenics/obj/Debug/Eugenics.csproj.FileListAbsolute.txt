@@ -60,3 +60,4 @@ C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics\bin\System.Web.Htt
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics\bin\System.Web.Http.WebHost.xml
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics\obj\Debug\Eugenics.dll
 C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics\obj\Debug\Eugenics.pdb
+C:\Users\jkearney\Documents\GitHub\Eugenics\Eugenics\Eugenics\obj\Debug\Eugenics.csprojResolveAssemblyReference.cache

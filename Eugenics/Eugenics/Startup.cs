@@ -5,6 +5,7 @@ using LightInject;
 using Newtonsoft.Json.Serialization;
 using Eugenics.Dao.Interface;
 using Eugenics.Dao.Dapper;
+using Eugenics.Dao;
 
 [assembly: OwinStartup(typeof(Eugenics.Startup))]
 
@@ -33,6 +34,7 @@ namespace Eugenics
             var container = new ServiceContainer();
 
             container.RegisterApiControllers();
+            container.Register<IConnectionStringProvider, WebConfigConnectionStringProvider>(new PerContainerLifetime());
             container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
             
             container.EnableWebApi(configuration);
