@@ -36,7 +36,8 @@ namespace Eugenics
             container.RegisterApiControllers();
             container.Register<IConnectionStringProvider, WebConfigConnectionStringProvider>(new PerContainerLifetime());
             container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
-            
+            container.Register<IAvatarDao, DapperAvatarDao>(new PerContainerLifetime());
+
             container.EnableWebApi(configuration);
             
             // Add Web Api middleware
