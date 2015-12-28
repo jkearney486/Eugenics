@@ -30,6 +30,9 @@ namespace Eugenics
             // camelCase Json.NET
             configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            // down with XML
+            configuration.Formatters.Remove(configuration.Formatters.XmlFormatter);
+
             // Dependency Injection
             var container = new ServiceContainer();
 
@@ -37,6 +40,8 @@ namespace Eugenics
             container.Register<IConnectionStringProvider, WebConfigConnectionStringProvider>(new PerContainerLifetime());
             container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
             container.Register<IAvatarDao, DapperAvatarDao>(new PerContainerLifetime());
+            container.Register<IClassDao, DapperClassDao>(new PerContainerLifetime());
+            container.Register<ISupportDao, DapperSupportDao>(new PerContainerLifetime());
 
             container.EnableWebApi(configuration);
             
