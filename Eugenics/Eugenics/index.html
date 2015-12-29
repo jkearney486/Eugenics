@@ -5,12 +5,31 @@
     <title>Eugenics</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-cyan.min.css">
+    <script src="//storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link href="Content/main.css" rel="stylesheet" />
     <script src="Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Test</h1>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout__title">Fixed drawer layout demo</span>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout__title">Material Design Lite</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#">Hello</a>
+                <a class="mdl-navigation__link" href="#">World.</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div>
+                <h1>Main</h1>
+            </div>
+        </main>
     </div>
     <script src="Scripts/jquery-2.1.4.min.js"></script>
     <script src="Scripts/knockout-3.4.0.js"></script>
