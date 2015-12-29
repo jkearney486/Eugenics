@@ -2,6 +2,7 @@
 using Eugenics.Models;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Linq;
 
 namespace Eugenics.Controllers
 {
@@ -10,11 +11,15 @@ namespace Eugenics.Controllers
     {
         private readonly ICharacterDao _characterDao;
         private readonly ISupportDao _supportDao;
+        private readonly IClassSetDao _classSetDao;
+        private readonly IInheritanceClassSetDao _inheritanceClassSetDao;
 
-        public CharactersController(ICharacterDao characterDao, ISupportDao supportDao)
+        public CharactersController(ICharacterDao characterDao, ISupportDao supportDao, IClassSetDao classSetDao, IInheritanceClassSetDao inheritanceClassSetDao)
         {
             _characterDao = characterDao;
             _supportDao = supportDao;
+            _classSetDao = classSetDao;
+            _inheritanceClassSetDao = inheritanceClassSetDao;
         }
         
         [HttpGet, Route("")]
@@ -33,6 +38,24 @@ namespace Eugenics.Controllers
         public IEnumerable<int> GetSupports(int id)
         {
             return _supportDao.GetSupports(id);
+        }
+
+        [HttpGet, Route("{id}/classes")]
+        public IEnumerable<int> GetClasses(int id)
+        {
+            return _classSetDao.GetByCharacterId(id);
+        }
+
+        [HttpGet, Route("{id}/parents/{femaleParentId}/{maleParentId}/classes")]
+        public IEnumerable<int> GetClasses(int id, int femaleParentId, int maleParentId)
+        {
+            var gender = _characterDao.GetGender(id);
+            var maleChild = gender == "Male" ? true : false;
+            var femaleChild = gender == "Female" ? true : false;
+            var childClassSet = _classSetDao.GetByCharacterId(id);
+            var inheritedClassSet = _inheritanceClassSetDao.GetByParents(maleParentId, femaleParentId, maleChild, femaleChild);
+            var fullClassSet = childClassSet.Union(inheritedClassSet).Distinct();
+            return fullClassSet;
         }
     }
 }

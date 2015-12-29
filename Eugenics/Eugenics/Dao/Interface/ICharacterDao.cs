@@ -7,5 +7,6 @@ namespace Eugenics.Dao.Interface
     {
         IEnumerable<Character> GetAll();
         Character GetById(int id);
+        string GetGender(int id);
     }
 }

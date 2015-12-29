@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Eugenics.Models;
 using Dapper;
+using System;
 
 namespace Eugenics.Dao.Dapper
 {
@@ -44,6 +45,22 @@ namespace Eugenics.Dao.Dapper
             using (var connection = GetConnection())
             {
                 return connection.Query<Character>(sql, new
+                {
+                    Id = id
+                }).FirstOrDefault();
+            }
+        }
+
+        public string GetGender(int id)
+        {
+            const string sql =
+            @"SELECT c.[Gender]
+              FROM [Character] as c 
+              WHERE c.[Id] = @Id";
+
+            using (var connection = GetConnection())
+            {
+                return connection.Query<string>(sql, new
                 {
                     Id = id
                 }).FirstOrDefault();

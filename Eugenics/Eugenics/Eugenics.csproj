@@ -162,13 +162,17 @@
     <Compile Include="Dao\Dapper\DapperAvatarDao.cs" />
     <Compile Include="Dao\Dapper\DapperCharacterDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassDao.cs" />
+    <Compile Include="Dao\Dapper\DapperClassSetDao.cs" />
     <Compile Include="Dao\Dapper\DapperDao.cs" />
+    <Compile Include="Dao\Dapper\DapperInheritanceClassSetDao.cs" />
     <Compile Include="Dao\Dapper\DapperSupportDao.cs" />
     <Compile Include="Dao\IConnectionStringProvider.cs" />
     <Compile Include="Dao\Interface\IAvatarDao.cs" />
     <Compile Include="Dao\Interface\ICharacterDao.cs" />
     <Compile Include="Dao\Interface\IClassDao.cs" />
+    <Compile Include="Dao\Interface\IClassSetDao.cs" />
     <Compile Include="Dao\Interface\IDao.cs" />
+    <Compile Include="Dao\Interface\IInheritanceClassSetDao.cs" />
     <Compile Include="Dao\Interface\ISupportDao.cs" />
     <Compile Include="Dao\WebConfigConnectionStringProvider.cs" />
     <Compile Include="Models\AssetFlaw.cs" />
