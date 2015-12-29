@@ -54,8 +54,7 @@ namespace Eugenics.Controllers
             var femaleChild = gender == "Female" ? true : false;
             var childClassSet = _classSetDao.GetByCharacterId(id);
             var inheritedClassSet = _inheritanceClassSetDao.GetByParents(maleParentId, femaleParentId, maleChild, femaleChild);
-            var fullClassSet = childClassSet.Union(inheritedClassSet).Distinct();
-            return fullClassSet;
+            return childClassSet.Union(inheritedClassSet).Distinct();
         }
     }
 }

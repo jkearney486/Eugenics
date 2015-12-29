@@ -44,6 +44,7 @@ namespace Eugenics
             container.Register<ISupportDao, DapperSupportDao>(new PerContainerLifetime());
             container.Register<IClassSetDao, DapperClassSetDao>(new PerContainerLifetime());
             container.Register<IInheritanceClassSetDao, DapperInheritanceClassSetDao>(new PerContainerLifetime());
+            container.Register<IClassPromotionDao, DapperClassPromotionDao>(new PerContainerLifetime());
 
             container.EnableWebApi(configuration);
             
