@@ -13,13 +13,18 @@ namespace Eugenics.Controllers
         private readonly ISupportDao _supportDao;
         private readonly IClassSetDao _classSetDao;
         private readonly IInheritanceClassSetDao _inheritanceClassSetDao;
+        private readonly IInheritanceSkillDao _inheritanceSkillDao;
 
-        public CharactersController(ICharacterDao characterDao, ISupportDao supportDao, IClassSetDao classSetDao, IInheritanceClassSetDao inheritanceClassSetDao)
+        public CharactersController(ICharacterDao characterDao, 
+            ISupportDao supportDao, IClassSetDao classSetDao, 
+            IInheritanceClassSetDao inheritanceClassSetDao, 
+            IInheritanceSkillDao inheritanceSkillDao)
         {
             _characterDao = characterDao;
             _supportDao = supportDao;
             _classSetDao = classSetDao;
             _inheritanceClassSetDao = inheritanceClassSetDao;
+            _inheritanceSkillDao = inheritanceSkillDao;
         }
         
         [HttpGet, Route("")]
@@ -47,14 +52,27 @@ namespace Eugenics.Controllers
         }
 
         [HttpGet, Route("{id}/parents/{femaleParentId}/{maleParentId}/classes")]
-        public IEnumerable<int> GetClasses(int id, int femaleParentId, int maleParentId)
+        public IEnumerable<int> GetClasses(int id, int femaleParentId, 
+            int maleParentId)
         {
             var gender = _characterDao.GetGender(id);
             var maleChild = gender == "Male" ? true : false;
             var femaleChild = gender == "Female" ? true : false;
             var childClassSet = _classSetDao.GetByCharacterId(id);
-            var inheritedClassSet = _inheritanceClassSetDao.GetByParents(maleParentId, femaleParentId, maleChild, femaleChild);
+            var inheritedClassSet = _inheritanceClassSetDao.GetByParents(maleParentId, 
+                femaleParentId, maleChild, femaleChild);
             return childClassSet.Union(inheritedClassSet).Distinct();
+        }
+
+        [HttpGet, Route("{id}/parents/{femaleParentId}/{maleParentId}/skills")]
+        public IEnumerable<int> GetInheritedSkills(int id, int femaleParentId, 
+            int maleParentId)
+        {
+            var gender = _characterDao.GetGender(id);
+            var maleChild = gender == "Male" ? true : false;
+            var femaleChild = gender == "Female" ? true : false;
+            return _inheritanceSkillDao.GetByParents(maleParentId, 
+                femaleParentId, maleChild, femaleChild);
         }
     }
 }

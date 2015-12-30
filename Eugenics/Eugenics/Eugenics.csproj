@@ -161,6 +161,7 @@
     <Compile Include="Dao\Dapper\DapperClassSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperDao.cs" />
     <Compile Include="Dao\Dapper\DapperInheritanceClassSetDao.cs" />
+    <Compile Include="Dao\Dapper\DapperInheritanceSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperSupportDao.cs" />
     <Compile Include="Dao\IConnectionStringProvider.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Dao\Interface\IClassSkillDao.cs" />
     <Compile Include="Dao\Interface\IDao.cs" />
     <Compile Include="Dao\Interface\IInheritanceClassSetDao.cs" />
+    <Compile Include="Dao\Interface\IInheritanceSkillDao.cs" />
     <Compile Include="Dao\Interface\ISkillDao.cs" />
     <Compile Include="Dao\Interface\ISupportDao.cs" />
     <Compile Include="Dao\WebConfigConnectionStringProvider.cs" />
