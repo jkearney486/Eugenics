@@ -124,6 +124,7 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\sprintf.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,19 +145,23 @@
     <Content Include="Scripts\knockout-postbox.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\sprintf.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AvatarController.cs" />
     <Compile Include="Controllers\CharactersController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
+    <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Dao\Dapper\DapperAvatarDao.cs" />
     <Compile Include="Dao\Dapper\DapperCharacterDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassPromotionDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassSetDao.cs" />
+    <Compile Include="Dao\Dapper\DapperClassSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperDao.cs" />
     <Compile Include="Dao\Dapper\DapperInheritanceClassSetDao.cs" />
+    <Compile Include="Dao\Dapper\DapperSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperSupportDao.cs" />
     <Compile Include="Dao\IConnectionStringProvider.cs" />
     <Compile Include="Dao\Interface\IAvatarDao.cs" />
@@ -164,13 +169,16 @@
     <Compile Include="Dao\Interface\IClassDao.cs" />
     <Compile Include="Dao\Interface\IClassPromotionDao.cs" />
     <Compile Include="Dao\Interface\IClassSetDao.cs" />
+    <Compile Include="Dao\Interface\IClassSkillDao.cs" />
     <Compile Include="Dao\Interface\IDao.cs" />
     <Compile Include="Dao\Interface\IInheritanceClassSetDao.cs" />
+    <Compile Include="Dao\Interface\ISkillDao.cs" />
     <Compile Include="Dao\Interface\ISupportDao.cs" />
     <Compile Include="Dao\WebConfigConnectionStringProvider.cs" />
     <Compile Include="Models\AssetFlaw.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

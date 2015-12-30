@@ -1,7 +1,7 @@
 USE [Eugenics]
 GO
 
-/****** Object:  Table [dbo].[Skill]    Script Date: 12/29/2015 2:37:00 PM ******/
+/****** Object:  Table [dbo].[Skill]    Script Date: 12/29/2015 7:15:48 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -17,6 +17,7 @@ CREATE TABLE [dbo].[Skill](
 	[Description] [varchar](500) NOT NULL,
 	[ActivationStat] [varchar](50) NULL,
 	[ActivationMultiplier] [float] NULL,
+	[DLC] [bit] NOT NULL CONSTRAINT [DF_Skill_DLC]  DEFAULT ((0)),
  CONSTRAINT [PK_Skill] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

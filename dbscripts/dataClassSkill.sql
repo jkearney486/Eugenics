@@ -170,3 +170,11 @@ insert into [ClassSkill] (ClassId, SkillId) values (42, 82)
 --Manakete Skills
 insert into [ClassSkill] (ClassId, SkillId) values (43, 83)
 insert into [ClassSkill] (ClassId, SkillId) values (43, 84)
+
+--Dread Fighter Skills
+insert into [ClassSkill] (ClassId, SkillId) values (45, 87)
+insert into [ClassSkill] (ClassId, SkillId) values (45, 88)
+
+--Bride Skills
+insert into [ClassSkill] (ClassId, SkillId) values (46, 89)
+insert into [ClassSkill] (ClassId, SkillId) values (46, 90)

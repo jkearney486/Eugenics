@@ -15,8 +15,5 @@ namespace Eugenics.Models
         public int ModDef { get; set; }
         public int ModRes { get; set; }
         public int? ParentID { get; set; }
-
-        public IEnumerable<int> Classes { get; set; }
-        public IEnumerable<int> Supports { get; set; }
     }
 }

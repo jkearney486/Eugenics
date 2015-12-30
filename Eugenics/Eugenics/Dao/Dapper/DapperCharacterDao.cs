@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Eugenics.Models;
 using Dapper;
-using System;
 
 namespace Eugenics.Dao.Dapper
 {

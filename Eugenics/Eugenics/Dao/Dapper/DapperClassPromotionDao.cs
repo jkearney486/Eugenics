@@ -1,7 +1,5 @@
 ﻿using Eugenics.Dao.Interface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Dapper;
 
 namespace Eugenics.Dao.Dapper

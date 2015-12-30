@@ -10,11 +10,13 @@ namespace Eugenics.Controllers
     {
         private readonly IClassDao _classDao;
         private readonly IClassPromotionDao _classPromotionDao;
+        private readonly IClassSkillDao _classSkillDao;
 
-        public ClassesController(IClassDao classDao, IClassPromotionDao classPromotionDao)
+        public ClassesController(IClassDao classDao, IClassPromotionDao classPromotionDao, IClassSkillDao classSkillDao)
         {
             _classDao = classDao;
             _classPromotionDao = classPromotionDao;
+            _classSkillDao = classSkillDao;
         }
 
         [HttpGet, Route("")]
@@ -39,6 +41,18 @@ namespace Eugenics.Controllers
         public IEnumerable<int> GetPromotedClasses([FromUri]IEnumerable<int> ids)
         {
             return _classPromotionDao.GetPromotions(ids);
+        }
+
+        [HttpGet, Route("{id}/skills")]
+        public IEnumerable<int> GetSkills(int id)
+        {
+            return _classSkillDao.GetSkills(id);
+        }
+
+        [HttpGet, Route("skills")]
+        public IEnumerable<int> GetSkills([FromUri]IEnumerable<int> ids)
+        {
+            return _classSkillDao.GetSkills(ids);
         }
     }
 }

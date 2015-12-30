@@ -38,13 +38,15 @@ namespace Eugenics
 
             container.RegisterApiControllers();
             container.Register<IConnectionStringProvider, WebConfigConnectionStringProvider>(new PerContainerLifetime());
-            container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
             container.Register<IAvatarDao, DapperAvatarDao>(new PerContainerLifetime());
+            container.Register<ICharacterDao, DapperCharacterDao>(new PerContainerLifetime());
             container.Register<IClassDao, DapperClassDao>(new PerContainerLifetime());
-            container.Register<ISupportDao, DapperSupportDao>(new PerContainerLifetime());
-            container.Register<IClassSetDao, DapperClassSetDao>(new PerContainerLifetime());
-            container.Register<IInheritanceClassSetDao, DapperInheritanceClassSetDao>(new PerContainerLifetime());
             container.Register<IClassPromotionDao, DapperClassPromotionDao>(new PerContainerLifetime());
+            container.Register<IClassSetDao, DapperClassSetDao>(new PerContainerLifetime());
+            container.Register<IClassSkillDao, DapperClassSkillDao>(new PerContainerLifetime());
+            container.Register<IInheritanceClassSetDao, DapperInheritanceClassSetDao>(new PerContainerLifetime());
+            container.Register<ISkillDao, DapperSkillDao>(new PerContainerLifetime());
+            container.Register<ISupportDao, DapperSupportDao>(new PerContainerLifetime());
 
             container.EnableWebApi(configuration);
             

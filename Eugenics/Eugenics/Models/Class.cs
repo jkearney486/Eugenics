@@ -23,7 +23,5 @@ namespace Eugenics.Models
         public int PairRes { get; set; }
         public int PairMov { get; set; }
         public bool IsBaseClass { get; set; }
-
-        public IEnumerable<int> Promotions { get; set; }
     }
 }
