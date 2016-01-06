@@ -47,8 +47,8 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LightInject, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.4.0.3\lib\net45\LightInject.dll</HintPath>
+    <Reference Include="LightInject, Version=4.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.4.0.4\lib\net45\LightInject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LightInject.WebApi, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
@@ -123,8 +123,15 @@
     <Content Include="Content\main.css" />
     <Content Include="packages.config" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <Content Include="Scripts\sprintf.min.js.map" />
+    <None Include="Scripts\lib\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\lib\jquery-2.1.4.js" />
+    <Content Include="Scripts\lib\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\lib\jquery-private.js" />
+    <Content Include="Scripts\app\main.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\lib\sprintf.min.js.map" />
+    <Content Include="Scripts\lib\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -134,18 +141,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\knockout-3.4.0.debug.js" />
-    <Content Include="Scripts\knockout-3.4.0.js" />
-    <Content Include="Scripts\knockout-delegatedEvents.js" />
-    <Content Include="Scripts\knockout-delegatedEvents.min.js" />
-    <Content Include="Scripts\knockout-postbox.js" />
-    <Content Include="Scripts\knockout-postbox.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\lib\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\lib\knockout-3.4.0.js" />
+    <Content Include="Scripts\lib\knockout-delegatedEvents.js" />
+    <Content Include="Scripts\lib\knockout-delegatedEvents.min.js" />
+    <Content Include="Scripts\lib\knockout-postbox.js" />
+    <Content Include="Scripts\lib\knockout-postbox.min.js" />
+    <Content Include="Scripts\lib\modernizr-2.8.3.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Scripts\sprintf.min.js" />
+    <Content Include="Scripts\lib\sprintf.min.js" />
+    <Content Include="Scripts\lib\text.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +189,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\models\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
