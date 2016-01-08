@@ -151,6 +151,7 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\lib\sprintf.min.js" />
     <Content Include="Scripts\lib\text.js" />
+    <Content Include="Scripts\views\character-stats.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

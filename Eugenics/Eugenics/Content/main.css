@@ -1,3 +1,86 @@
-﻿.unit-card.mdl-card{
+﻿.unit-card.mdl-card {
     width:100%;
 }
+
+.unit-card .mdl-card__title .mdl-card__title-text {
+    margin: auto;
+}
+
+.unit-card .mdl-card__media {
+    background-color: #ffffff;
+}
+
+.unit-card .unit-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: stretch;
+    padding: .25em;
+}
+
+.unit-card .options,
+.unit-card .info {
+    padding: .25em;
+}
+
+.unit-card .options {
+    flex: 2;
+    display: flex;
+    align-items: stretch;
+}
+
+.unit-card .options .mdl-tabs__tab-bar .mdl-tabs__tab {
+    text-transform: none;
+}
+
+.unit-card .options .main-tab__panel {
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.unit-card .options .main-tab__panel .panel-container {
+    display: flex;
+}
+
+.unit-card .options .main-tab__panel .panel-container.panel-container-skills {
+    flex-direction: column;
+}
+
+.unit-card .options .main-tab__panel .panel-container .female-parent-options,
+.unit-card .options .main-tab__panel .panel-container .male-parent-options,
+.unit-card .options .main-tab__panel .panel-container .base-classes,
+.unit-card .options .main-tab__panel .panel-container .promoted-classes {
+    flex: 1;
+}
+
+.unit-card .info {
+    flex: 1
+}
+
+.unit-card .info .stats .stat {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.unit-card .info .stats .stat .stat-type,
+.unit-card .info .stats .stat .stat-value,
+.unit-card .info .stats .stat .stat-bonus {
+    flex: 1;
+}
+
+.unit-card .unit-actions {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.unit-card .unit-actions .switch,
+.unit-card .unit-actions .separate {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+/** mdl-grid breakpoint is 840px **/

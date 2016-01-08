@@ -1,11 +1,17 @@
 ﻿(function () {
     "use strict";
 
-    require(["modernizr", "knockout", "jquery", "sprintf", "knockout-delegatedEvents"],
-    function (modernizr, ko, $, sprintf) {
-        console.log(modernizr);
-        console.log(ko);
+    require([
+        "knockout",
+        "jquery",
+        "sprintf",
+        "text",
+        "knockout-delegatedEvents"
+    ],
+    function (ko, $, sprintf, text) {
+        /*console.log(ko);
         console.log($);
         console.log(sprintf);
+        console.log(text);*/
     });
 }());
