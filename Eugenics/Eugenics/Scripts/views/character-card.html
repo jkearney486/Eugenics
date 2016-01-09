@@ -31,13 +31,21 @@
                                 <div>
                                     <strong>Asset</strong>
                                 </div>
-                                
+                                <!--ko foreach: assets-->
+                                <div class="asset-flaw">
+                                    <span data-bind="text: name"></span>
+                                </div>
+                                <!--/ko-->
                             </div>
                             <div class="avatar-flaws">
                                 <div>
                                     <strong>Flaw</strong>
                                 </div>
-
+                                <!--ko foreach: flaws-->
+                                <div class="asset-flaw">
+                                    <span data-bind="text: name"></span>
+                                </div>
+                                <!--/ko-->
                             </div>
                         </div>
                     </div>
@@ -127,7 +135,7 @@
                                 <skill-nameplate params="skills: $parent.skills, id: $data">
                                 </skill-nameplate>
                             </div>
-                            <div class="inherited-skills">
+                            <div class="inherited-skills" data-bind="visible: character.isChild">
                                 <div class="skill">
                                     <span>TODO: Inherited Skills</span>
                                 </div>
