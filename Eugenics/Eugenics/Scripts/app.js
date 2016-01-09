@@ -12,6 +12,7 @@
             "sprintf": "sprintf.min",
             "app": "../app",
             "views": "../views",
+            "models": "../models",
         },
         shim: {
             "knockout": {

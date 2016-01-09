@@ -9,9 +9,20 @@
         "knockout-delegatedEvents"
     ],
     function (ko, $, sprintf, text) {
-        /*console.log(ko);
-        console.log($);
-        console.log(sprintf);
-        console.log(text);*/
+        var EugenicsViewModel = function () {
+
+        };
+
+        ko.components.register("character-card", { require: "../models/character-card" });
+
+        $(function () {
+            var container = document.getElementById("main");
+            var viewModel;
+
+            if (container) {
+                viewModel = new EugenicsViewModel();
+                ko.applyBindings(viewModel, container);
+            }
+        })
     });
 }());
