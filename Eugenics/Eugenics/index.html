@@ -15,14 +15,21 @@
     <div id="main" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Eugenics</span>
-            <div class="mdl-navigation">
-                <a class="mdl-navigation__link" href="#">Link</a>
-                <a class="mdl-navigation__link" href="#">Link</a>
-                <a class="mdl-navigation__link" href="#">Link</a>
+            <div class="mdl-navigation"
+                 data-bind="foreach: characters, delegatedHandler: 'click'">
+                <a class="mdl-navigation__link" href="#"
+                    data-bind="text: name" data-click="selectCharacter">
+                </a>
             </div>
         </div>
         <main class="mdl-layout__content">
-            <div class="mdl-grid" data-bind="foreach: characters">
+            <!--ko ifnot: selectedCharacters().length-->
+            <div>
+                <h1>Select a character to begin.</h1>
+            </div>
+            <!--/ko-->
+            <!--ko if: selectedCharacters().length-->
+            <div class="mdl-grid" data-bind="foreach: selectedCharacters, delegatedHandler: 'click'">
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                     <character-card params="
                         characters: $root.characters,
@@ -33,6 +40,7 @@
                     </character-card>
                 </div>
             </div>
+            <!--/ko-->
         </main>
     </div>
 

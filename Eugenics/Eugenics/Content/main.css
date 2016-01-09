@@ -78,7 +78,8 @@
 }
 
 .unit-card .unit-actions .switch,
-.unit-card .unit-actions .separate {
+.unit-card .unit-actions .separate,
+.unit-card .unit-actions .remove {
     margin-left: 6px;
     margin-right: 6px;
 }

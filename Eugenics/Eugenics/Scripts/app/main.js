@@ -81,6 +81,7 @@
             this.characters = ko.observableArray([]);
             this.classes = ko.observableArray([]);
             this.skills = ko.observableArray([]);
+            this.selectedCharacters = ko.observableArray([]);
         };
 
         EugenicsViewModel.prototype = {
@@ -129,6 +130,12 @@
                 this.getCharacters();
                 this.getClasses();
                 this.getSkills();
+            },
+            selectCharacter: function (character) {
+                this.selectedCharacters.push(character);
+            },
+            removeCharacter: function (card) {
+                this.selectedCharacters.remove(card.character);
             }
         };
 
