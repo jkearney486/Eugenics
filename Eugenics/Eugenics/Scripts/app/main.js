@@ -25,6 +25,8 @@
             this.modDef = ko.observable(character.modDef);
             this.modRes = ko.observable(character.modRes);
             this.parentId = ko.observable(character.parentID);
+            this.avatarAsset = ko.observable();
+            this.avatarFlaw = ko.observable();
             this.isPaired = ko.observable(false);
             this.isPairMain = ko.observable(false);
             this.isMarried = ko.observable(false);
@@ -33,10 +35,18 @@
             this.baseClasses = ko.observableArray([]);
             this.promotedClasses = ko.observableArray([]);
             this.skills = ko.observableArray([]);
+            this.inheritedSkills = ko.observableArray([]);
 
             this.isChild = ko.computed({
                 read: function () {
                     return !!this.parentId();
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.isAvatar = ko.computed({
+                read: function () {
+                    return this.name().search("Avatar") != -1;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -71,7 +81,7 @@
                     ko.utils.arrayForEach(data, function (c) {
                         classes.push(c);
                     });
-                    that.baseClasses(data);
+                    that.baseClasses(classes);
                     that.getPromotedClasses();
                 })
                 .fail(this.logError);
@@ -85,7 +95,7 @@
                     ko.utils.arrayForEach(data, function (c) {
                         classes.push(c);
                     });
-                    that.promotedClasses(data);
+                    that.promotedClasses(classes);
                     that.getSkills();
                 })
                 .fail(this.logError);
@@ -99,7 +109,7 @@
                     ko.utils.arrayForEach(data, function (s) {
                         skills.push(s);
                     });
-                    that.skills(data);
+                    that.skills(skills);
                 })
                 .fail(this.logError);
             },
@@ -159,10 +169,24 @@
             },
         };
 
+        var AssetFlawViewModel = function (assetFlaw) {
+            this.id = ko.observable(assetFlaw.id);
+            this.name = ko.observable(assetFlaw.name);
+            this.str = ko.observable(assetFlaw.str);
+            this.mag = ko.observable(assetFlaw.mag);
+            this.skl = ko.observable(assetFlaw.skl);
+            this.spd = ko.observable(assetFlaw.spd);
+            this.lck = ko.observable(assetFlaw.lck);
+            this.def = ko.observable(assetFlaw.def);
+            this.res = ko.observable(assetFlaw.res);
+        };
+
         var EugenicsViewModel = function () {
             this.characters = ko.observableArray([]);
             this.classes = ko.observableArray([]);
             this.skills = ko.observableArray([]);
+            this.assets = ko.observableArray([]);
+            this.flaws = ko.observableArray([]);
             this.selectedCharacters = ko.observableArray([]);
         };
 
@@ -192,7 +216,7 @@
                     ko.utils.arrayForEach(data, function (c) {
                         classes.push(new ClassViewModel(c));
                     });
-                    that.classes(data);
+                    that.classes(classes);
                 })
                 .fail(this.logError);
             },
@@ -204,7 +228,31 @@
                     ko.utils.arrayForEach(data, function (s) {
                         skills.push(new SkillViewModel(s));
                     });
-                    that.skills(data);
+                    that.skills(skills);
+                })
+                .fail(this.logError);
+            },
+            getAssets: function () {
+                var that = this;
+                $.getJSON("api/avatar/assets")
+                .done(function (data) {
+                    var assets = [];
+                    ko.utils.arrayForEach(data, function (a) {
+                        assets.push(new AssetFlawViewModel(a));
+                    });
+                    that.assets(assets);
+                })
+                .fail(this.logError);
+            },
+            getFlaws: function () {
+                var that = this;
+                $.getJSON("api/avatar/flaws")
+                .done(function (data) {
+                    var flaws = [];
+                    ko.utils.arrayForEach(data, function (f) {
+                        flaws.push(new AssetFlawViewModel(f));
+                    });
+                    that.flaws(flaws);
                 })
                 .fail(this.logError);
             },
@@ -212,6 +260,8 @@
                 this.getCharacters();
                 this.getClasses();
                 this.getSkills();
+                this.getAssets();
+                this.getFlaws();
             },
             selectCharacter: function (character) {
                 character.initialize();
@@ -224,6 +274,7 @@
 
         ko.components.register("character-card", { require: "../models/character-card" });
         ko.components.register("class-nameplate", { require: "../models/class-nameplate" });
+        ko.components.register("skill-nameplate", { require: "../models/skill-nameplate" });
 
         $(function () {
             var container = document.getElementById("main");

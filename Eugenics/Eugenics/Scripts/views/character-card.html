@@ -8,6 +8,10 @@
                 <div class="mdl-tabs mdl-js-tabs">
                     <div class="mdl-tabs__tab-bar">
                         <a href="#" class="mdl-tabs__tab"
+                           data-bind="visible: character.isAvatar, attr: { href: avatarTabHref }">
+                            Asset/Flaw
+                        </a>
+                        <a href="#" class="mdl-tabs__tab"
                            data-bind="visible: character.isChild, attr: { href: parentsTabHref }">
                             Parents
                         </a>
@@ -19,6 +23,23 @@
                            data-bind="attr: { href: skillsTabHref }">
                             Skills
                         </a>
+                    </div>
+                    <div class="mdl-tabs__panel main-tab__panel"
+                         data-bind="attr: { id: avatarTabId }">
+                        <div class="panel-container">
+                            <div class="avatar-assets">
+                                <div>
+                                    <strong>Asset</strong>
+                                </div>
+                                
+                            </div>
+                            <div class="avatar-flaws">
+                                <div>
+                                    <strong>Flaw</strong>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: parentsTabId }">
@@ -102,11 +123,14 @@
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: skillsTabId }">
                         <div class="panel-container panel-container-skills">
-                            <div class="own-skills">
-                                Own Skills
+                            <div class="own-skills" data-bind="foreach: character.skills">
+                                <skill-nameplate params="skills: $parent.skills, id: $data">
+                                </skill-nameplate>
                             </div>
                             <div class="inherited-skills">
-                                Inherited Skills
+                                <div class="skill">
+                                    <span>TODO: Inherited Skills</span>
+                                </div>
                             </div>
                         </div>
                     </div>

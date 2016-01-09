@@ -11,7 +11,17 @@
             this.characters = params.characters;
             this.classes = params.classes;
             this.skills = params.skills;
+            this.assets = params.assets;
+            this.flaws = params.flaws;
 
+            this.avatarTabId = ko.computed({
+                read: function () {
+                    var href = "avatar-tab";
+                    href += this.cardIndex();
+                    return href;
+                },
+                owner: this
+            });
             this.parentsTabId = ko.computed({
                 read: function () {
                     var href = "parents-tab";
@@ -34,6 +44,13 @@
                     href += this.cardIndex();
                     return href;
                 },
+                owner: this
+            });
+            this.avatarTabHref = ko.computed({
+                read: function () {
+                    return "#" + this.avatarTabId();
+                },
+                deferEvaluation: true,
                 owner: this
             });
             this.parentsTabHref = ko.computed({
