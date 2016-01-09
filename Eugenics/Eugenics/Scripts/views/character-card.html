@@ -7,11 +7,21 @@
             <div class="options">
                 <div class="mdl-tabs mdl-js-tabs">
                     <div class="mdl-tabs__tab-bar">
-                        <a href="#parents-tab1" class="mdl-tabs__tab is-active">Parents</a>
-                        <a href="#classes-tab1" class="mdl-tabs__tab">Classes</a>
-                        <a href="#skills-tab1" class="mdl-tabs__tab">Skills</a>
+                        <a href="#" class="mdl-tabs__tab"
+                           data-bind="visible: character.isChild, attr: { href: parentsTabHref }">
+                            Parents
+                        </a>
+                        <a href="#" class="mdl-tabs__tab is-active"
+                           data-bind="attr: { href: classesTabHref }">
+                            Classes
+                        </a>
+                        <a href="#" class="mdl-tabs__tab"
+                           data-bind="attr: { href: skillsTabHref }">
+                            Skills
+                        </a>
                     </div>
-                    <div class="mdl-tabs__panel main-tab__panel is-active" id="parents-tab1">
+                    <div class="mdl-tabs__panel main-tab__panel"
+                         data-bind="attr: { id: parentsTabId }">
                         <div class="panel-container">
                             <div class="female-parent-options">
                                 <div class="parent-character">
@@ -76,7 +86,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mdl-tabs__panel main-tab__panel" id="classes-tab1">
+                    <div class="mdl-tabs__panel main-tab__panel is-active"
+                         data-bind="attr: { id: classesTabId }">
                         <div class="panel-container">
                             <div class="base-classes">
                                 <div class="class">
@@ -180,7 +191,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mdl-tabs__panel main-tab__panel" id="skills-tab1">
+                    <div class="mdl-tabs__panel main-tab__panel"
+                         data-bind="attr: { id: skillsTabId }">
                         <div class="panel-container panel-container-skills">
                             <div class="own-skills">
                                 Own Skills

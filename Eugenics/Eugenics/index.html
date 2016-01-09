@@ -12,30 +12,24 @@
     <script src="Scripts/lib/modernizr-2.8.3.js"></script>
 </head>
 <body>
-    <div class="mdl-layout mdl-js-layout">
-        <header class="mdl-layout__header mdl-layout__header--scroll">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Eugenics</span>
-                <div class="mdl-layout-spacer"></div>
-                <nav class="mdl-navigation">
-
-                </nav>
-            </div>
-        </header>
+    <div id="main" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Eugenics</span>
-            <nav class="mdl-navigation">
-
-            </nav>
+            <div class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#">Link</a>
+                <a class="mdl-navigation__link" href="#">Link</a>
+                <a class="mdl-navigation__link" href="#">Link</a>
+            </div>
         </div>
-        <main id="main" class="mdl-layout__content">
+        <main class="mdl-layout__content">
             <div class="mdl-grid" data-bind="foreach: characters">
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                     <character-card params="
                         characters: $root.characters,
                         classes: $root.classes,
                         skills: $root.skills,
-                        character: $data">
+                        character: $data,
+                        index: $index()">
                     </character-card>
                 </div>
             </div>
