@@ -9,6 +9,10 @@
         "knockout-delegatedEvents"
     ],
     function (ko, $, sprintf, text) {
+        var getPromotedClasses = function (ids) {
+            return $.getJSON("api/classes/promotions", { ids: ids });
+        };
+
         var CharacterViewModel = function (character) {
             this.id = ko.observable(character.id);
             this.name = ko.observable(character.name);
@@ -24,6 +28,10 @@
             this.isPaired = ko.observable(false);
             this.isPairMain = ko.observable(false);
             this.isMarried = ko.observable(false);
+            this.isInitialized = ko.observable(false);
+            this.supports = ko.observableArray([]);
+            this.classes = ko.observableArray([]);
+            this.skills = ko.observableArray([]);
 
             this.isChild = ko.computed({
                 read: function () {
@@ -35,7 +43,58 @@
         };
 
         CharacterViewModel.prototype = {
-
+            logError: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            getSupports: function () {
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/supports", ko.unwrap(this.id));
+                $.getJSON(url)
+                .done(function (data) {
+                    var supports = [];
+                    ko.utils.arrayForEach(data, function (s) {
+                        supports.push(s);
+                    });
+                    that.supports(data);
+                })
+                .fail(this.logError);
+            },
+            getClasses: function () {
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/classes", ko.unwrap(this.id));
+                $.getJSON(url)
+                .done(function (data) {
+                    var classes = [];
+                    ko.utils.arrayForEach(data, function (c) {
+                        classes.push(c);
+                    });
+                    that.classes(data);
+                    that.getSkills();
+                })
+                .fail(this.logError);
+            },
+            getSkills: function () {
+                var that = this;
+                var ids = that.classes();
+                $.getJSON("api/classes/skills", { ids: ids })
+                .done(function (data) {
+                    var skills = [];
+                    ko.utils.arrayForEach(data, function (s) {
+                        skills.push(s);
+                    });
+                    that.skills(data);
+                })
+                .fail(this.logError);
+            },
+            initialize: function () {
+                if (!this.isInitialized()) {
+                    this.getSupports();
+                    this.getClasses();
+                    this.isInitialized(true);
+                }
+            }
         };
 
         var ClassViewModel = function (classObj) {
@@ -61,7 +120,11 @@
         };
 
         ClassViewModel.prototype = {
-
+            logError: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
         };
 
         var SkillViewModel = function (skill) {
@@ -74,7 +137,11 @@
         };
 
         SkillViewModel.prototype = {
-
+            logError: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
         };
 
         var EugenicsViewModel = function () {
@@ -132,6 +199,7 @@
                 this.getSkills();
             },
             selectCharacter: function (character) {
+                character.initialize();
                 this.selectedCharacters.push(character);
             },
             removeCharacter: function (card) {

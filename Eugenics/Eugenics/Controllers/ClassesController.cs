@@ -12,7 +12,9 @@ namespace Eugenics.Controllers
         private readonly IClassPromotionDao _classPromotionDao;
         private readonly IClassSkillDao _classSkillDao;
 
-        public ClassesController(IClassDao classDao, IClassPromotionDao classPromotionDao, IClassSkillDao classSkillDao)
+        public ClassesController(IClassDao classDao,
+            IClassPromotionDao classPromotionDao,
+            IClassSkillDao classSkillDao)
         {
             _classDao = classDao;
             _classPromotionDao = classPromotionDao;

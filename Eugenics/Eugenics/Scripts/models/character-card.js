@@ -57,6 +57,24 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.baseClasses = ko.computed({
+                read: function () {
+                    return ko.utils.arrayFilter(this.classes(), function (c) {
+                        return ko.unwrap(c.isBaseClass);
+                    });
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.promotedClasses = ko.computed({
+                read: function () {
+                    return ko.utils.arrayFilter(this.classes(), function (c) {
+                        return !ko.unwrap(c.isBaseClass);
+                    });
+                },
+                deferEvaluation: true,
+                owner: this
+            });
         };
 
 

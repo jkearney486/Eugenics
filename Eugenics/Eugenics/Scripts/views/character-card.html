@@ -89,45 +89,9 @@
                     <div class="mdl-tabs__panel main-tab__panel is-active"
                          data-bind="attr: { id: classesTabId }">
                         <div class="panel-container">
-                            <div class="base-classes">
+                            <div class="base-classes" data-bind="foreach: character.classes">
                                 <div class="class">
-                                    Tactician
-                                </div>
-                                <div class="class">
-                                    Cavalier
-                                </div>
-                                <div class="class">
-                                    Knight
-                                </div>
-                                <div class="class">
-                                    Myrmidon
-                                </div>
-                                <div class="class">
-                                    Mercenary
-                                </div>
-                                <div class="class">
-                                    Fighter
-                                </div>
-                                <div class="class">
-                                    Barbarian
-                                </div>
-                                <div class="class">
-                                    Archer
-                                </div>
-                                <div class="class">
-                                    Thief
-                                </div>
-                                <div class="class">
-                                    Wyvern Rider
-                                </div>
-                                <div class="class">
-                                    Mage
-                                </div>
-                                <div class="class">
-                                    Dark Mage
-                                </div>
-                                <div class="class">
-                                    Priest/Cleric
+                                    <span data-bind="text: $data"></span>
                                 </div>
                             </div>
                             <div class="promoted-classes">

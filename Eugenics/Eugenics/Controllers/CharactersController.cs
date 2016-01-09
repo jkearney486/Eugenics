@@ -14,15 +14,18 @@ namespace Eugenics.Controllers
         private readonly IClassSetDao _classSetDao;
         private readonly IInheritanceClassSetDao _inheritanceClassSetDao;
         private readonly IInheritanceSkillDao _inheritanceSkillDao;
+        private readonly IClassPromotionDao _classPromotionDao;
 
-        public CharactersController(ICharacterDao characterDao, 
-            ISupportDao supportDao, IClassSetDao classSetDao, 
-            IInheritanceClassSetDao inheritanceClassSetDao, 
+        public CharactersController(ICharacterDao characterDao,
+            ISupportDao supportDao, IClassSetDao classSetDao,
+            IClassPromotionDao classPromotionDao,
+            IInheritanceClassSetDao inheritanceClassSetDao,
             IInheritanceSkillDao inheritanceSkillDao)
         {
             _characterDao = characterDao;
             _supportDao = supportDao;
             _classSetDao = classSetDao;
+            _classPromotionDao = classPromotionDao;
             _inheritanceClassSetDao = inheritanceClassSetDao;
             _inheritanceSkillDao = inheritanceSkillDao;
         }
@@ -48,7 +51,9 @@ namespace Eugenics.Controllers
         [HttpGet, Route("{id}/classes")]
         public IEnumerable<int> GetClasses(int id)
         {
-            return _classSetDao.GetByCharacterId(id);
+            var baseClasses = _classSetDao.GetByCharacterId(id);
+            var promotions = _classPromotionDao.GetPromotions(baseClasses);
+            return baseClasses.Union(promotions).Distinct();
         }
 
         [HttpGet, Route("{id}/parents/{femaleParentId}/{maleParentId}/classes")]
