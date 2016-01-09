@@ -8,6 +8,9 @@
         var CharacterCardViewModel = function (params) {
             this.cardIndex = params.index;
             this.character = params.character;
+            this.characters = params.characters;
+            this.classes = params.classes;
+            this.skills = params.skills;
 
             this.parentsTabId = ko.computed({
                 read: function () {
