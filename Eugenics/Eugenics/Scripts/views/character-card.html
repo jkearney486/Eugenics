@@ -89,69 +89,13 @@
                     <div class="mdl-tabs__panel main-tab__panel is-active"
                          data-bind="attr: { id: classesTabId }">
                         <div class="panel-container">
-                            <div class="base-classes" data-bind="foreach: character.classes">
-                                <div class="class">
-                                    <span data-bind="text: $data"></span>
-                                </div>
+                            <div class="base-classes" data-bind="foreach: character.baseClasses">
+                                <class-nameplate params="classes: $parents[2].classes, id: $data">
+                                </class-nameplate>
                             </div>
-                            <div class="promoted-classes">
-                                <div class="class">
-                                    Grandmaster
-                                </div>
-                                <div class="class">
-                                    Paladin
-                                </div>
-                                <div class="class">
-                                    Great Knight
-                                </div>
-                                <div class="class">
-                                    General
-                                </div>
-                                <div class="class">
-                                    Swordmaster
-                                </div>
-                                <div class="class">
-                                    Hero
-                                </div>
-                                <div class="class">
-                                    Warrior
-                                </div>
-                                <div class="class">
-                                    Berserker
-                                </div>
-                                <div class="class">
-                                    Sniper
-                                </div>
-                                <div class="class">
-                                    Bow Knight
-                                </div>
-                                <div class="class">
-                                    Assassin
-                                </div>
-                                <div class="class">
-                                    Trickster
-                                </div>
-                                <div class="class">
-                                    Wyvern Lord
-                                </div>
-                                <div class="class">
-                                    Griffon Rider
-                                </div>
-                                <div class="class">
-                                    Sage
-                                </div>
-                                <div class="class">
-                                    Sorcerer
-                                </div>
-                                <div class="class">
-                                    Dark Knight
-                                </div>
-                                <div class="class">
-                                    War Monk/Cleric
-                                </div>
-                                <div class="class">
-                                    Dread Fighter
-                                </div>
+                            <div class="promoted-classes" data-bind="foreach: character.promotedClasses">
+                                <class-nameplate params="classes: $parents[2].classes, id: $data">
+                                </class-nameplate>
                             </div>
                         </div>
                     </div>

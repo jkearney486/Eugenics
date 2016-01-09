@@ -30,7 +30,8 @@
             this.isMarried = ko.observable(false);
             this.isInitialized = ko.observable(false);
             this.supports = ko.observableArray([]);
-            this.classes = ko.observableArray([]);
+            this.baseClasses = ko.observableArray([]);
+            this.promotedClasses = ko.observableArray([]);
             this.skills = ko.observableArray([]);
 
             this.isChild = ko.computed({
@@ -70,14 +71,28 @@
                     ko.utils.arrayForEach(data, function (c) {
                         classes.push(c);
                     });
-                    that.classes(data);
+                    that.baseClasses(data);
+                    that.getPromotedClasses();
+                })
+                .fail(this.logError);
+            },
+            getPromotedClasses: function () {
+                var that = this;
+                var ids = this.baseClasses();
+                getPromotedClasses(ids)
+                .done(function (data) {
+                    var classes = [];
+                    ko.utils.arrayForEach(data, function (c) {
+                        classes.push(c);
+                    });
+                    that.promotedClasses(data);
                     that.getSkills();
                 })
                 .fail(this.logError);
             },
             getSkills: function () {
                 var that = this;
-                var ids = that.classes();
+                var ids = this.baseClasses().concat(this.promotedClasses());
                 $.getJSON("api/classes/skills", { ids: ids })
                 .done(function (data) {
                     var skills = [];
@@ -208,6 +223,7 @@
         };
 
         ko.components.register("character-card", { require: "../models/character-card" });
+        ko.components.register("class-nameplate", { require: "../models/class-nameplate" });
 
         $(function () {
             var container = document.getElementById("main");

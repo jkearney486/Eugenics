@@ -129,6 +129,7 @@
     <Content Include="Scripts\lib\jquery-private.js" />
     <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\models\character-card.js" />
+    <Content Include="Scripts\models\class-nameplate.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\lib\sprintf.min.js.map" />
@@ -153,6 +154,7 @@
     <Content Include="Scripts\lib\sprintf.min.js" />
     <Content Include="Scripts\lib\text.js" />
     <Content Include="Scripts\views\character-card.html" />
+    <Content Include="Scripts\views\class-nameplate.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

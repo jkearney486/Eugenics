@@ -51,6 +51,12 @@ namespace Eugenics.Controllers
         [HttpGet, Route("{id}/classes")]
         public IEnumerable<int> GetClasses(int id)
         {
+            return _classSetDao.GetByCharacterId(id);
+        }
+
+        [HttpGet, Route("{id}/classes/all")]
+        public IEnumerable<int> GetAllClasses(int id)
+        {
             var baseClasses = _classSetDao.GetByCharacterId(id);
             var promotions = _classPromotionDao.GetPromotions(baseClasses);
             return baseClasses.Union(promotions).Distinct();

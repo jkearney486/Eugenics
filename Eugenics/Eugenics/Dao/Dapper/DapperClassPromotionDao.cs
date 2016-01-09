@@ -14,7 +14,7 @@ namespace Eugenics.Dao.Dapper
         public IEnumerable<int> GetPromotions(IEnumerable<int> baseClasses)
         {
             const string sql =
-                @"SELECT c.[PromotedClassId]
+                @"SELECT DISTINCT c.[PromotedClassId]
                   FROM [ClassPromotion] as c
                   WHERE c.[BaseClassId] IN @Ids";
 
