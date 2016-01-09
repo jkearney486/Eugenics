@@ -29,6 +29,7 @@
             this.promotedClasses = ko.observableArray([]);
             this.skills = ko.observableArray([]);
             this.inheritedSkills = ko.observableArray([]);
+            this.parents = ko.observableArray([]);
 
             this.isChild = ko.computed({
                 read: function () {
@@ -106,10 +107,27 @@
                 })
                 .fail(this.logError);
             },
+            getParents: function () {
+                var parentId = this.parentId();
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/supports", parentId);
+                $.getJSON(url)
+                .done(function (data) {
+                    var parents = [];
+                    ko.utils.arrayForEach(data, function (p) {
+                        parents.push(p);
+                    });
+                    that.parents(parents);
+                })
+                .fail(this.logError);
+            },
             initialize: function () {
                 if (!this.isInitialized()) {
                     this.getSupports();
                     this.getClasses();
+                    if (this.isChild()) {
+                        this.getParents();
+                    }
                     this.isInitialized(true);
                 }
             }
