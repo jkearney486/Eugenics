@@ -31,12 +31,7 @@
             <!--ko if: selectedCharacters().length-->
             <div class="mdl-grid" data-bind="foreach: selectedCharacters, delegatedHandler: 'click'">
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                    <character-card params="
-                        characters: $root.characters,
-                        classes: $root.classes,
-                        skills: $root.skills,
-                        character: $data,
-                        index: $index()">
+                    <character-card params="character: $data, index: $index()">
                     </character-card>
                 </div>
             </div>

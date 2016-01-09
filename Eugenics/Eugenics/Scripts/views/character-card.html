@@ -90,11 +90,11 @@
                          data-bind="attr: { id: classesTabId }">
                         <div class="panel-container">
                             <div class="base-classes" data-bind="foreach: character.baseClasses">
-                                <class-nameplate params="classes: $parents[2].classes, id: $data">
+                                <class-nameplate params="classes: $root.classes, id: $data">
                                 </class-nameplate>
                             </div>
                             <div class="promoted-classes" data-bind="foreach: character.promotedClasses">
-                                <class-nameplate params="classes: $parents[2].classes, id: $data">
+                                <class-nameplate params="classes: $root.classes, id: $data">
                                 </class-nameplate>
                             </div>
                         </div>
