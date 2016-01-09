@@ -113,8 +113,10 @@
         };
 
         ko.components.register("character-card", { require: "../models/character-card" });
+        ko.components.register("parent-panel", { require: "../models/parent-panel" });
         ko.components.register("class-nameplate", { require: "../models/class-nameplate" });
         ko.components.register("skill-nameplate", { require: "../models/skill-nameplate" });
+        ko.components.register("character-nameplate", { require: "../models/character-nameplate" });
 
         $(function () {
             var container = document.getElementById("main");

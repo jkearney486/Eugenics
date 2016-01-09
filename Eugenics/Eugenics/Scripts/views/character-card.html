@@ -51,69 +51,12 @@
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: parentsTabId }">
-                        <div class="panel-container">
-                            <div class="female-parent-options">
-                                <div class="parent-character">
-                                    Avatar (F)
-                                </div>
-                            </div>
-                            <div class="male-parent-options">
-                                <div class="parent-character">
-                                    Chrom
-                                </div>
-                                <div class="parent-character">
-                                    Frederick
-                                </div>
-                                <div class="parent-character">
-                                    Virion
-                                </div>
-                                <div class="parent-character">
-                                    Stahl
-                                </div>
-                                <div class="parent-character">
-                                    Vaike
-                                </div>
-                                <div class="parent-character">
-                                    Kellam
-                                </div>
-                                <div class="parent-character">
-                                    Donnel
-                                </div>
-                                <div class="parent-character">
-                                    Lon'qu
-                                </div>
-                                <div class="parent-character">
-                                    Ricken
-                                </div>
-                                <div class="parent-character">
-                                    Gaius
-                                </div>
-                                <div class="parent-character">
-                                    Gregor
-                                </div>
-                                <div class="parent-character">
-                                    Libra
-                                </div>
-                                <div class="parent-character">
-                                    Henry
-                                </div>
-                                <div class="parent-character">
-                                    Basilio
-                                </div>
-                                <div class="parent-character">
-                                    Gangrel
-                                </div>
-                                <div class="parent-character">
-                                    Walhart
-                                </div>
-                                <div class="parent-character">
-                                    Yen'fay
-                                </div>
-                                <div class="parent-character">
-                                    Priam
-                                </div>
-                            </div>
-                        </div>
+                        <!--ko if: character.isChild-->
+                        <parent-panel params="parentId: character.parentId, 
+                            parents: character.parents, 
+                            characters: characters">
+                        </parent-panel>
+                        <!--/ko-->
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel is-active"
                          data-bind="attr: { id: classesTabId }">
