@@ -103,7 +103,7 @@
                 this.getAssets();
                 this.getFlaws();
             },
-            selectCharacter: function (character) {
+            addCharacter: function (character) {
                 character.initialize();
                 this.selectedCharacters.push(character);
             },

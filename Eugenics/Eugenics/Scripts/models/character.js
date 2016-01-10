@@ -17,13 +17,25 @@
             this.modLck = ko.observable(character.modLck);
             this.modDef = ko.observable(character.modDef);
             this.modRes = ko.observable(character.modRes);
+            this.modStrBase = ko.observable(character.modStr);
+            this.modMagBase = ko.observable(character.modMag);
+            this.modSklBase = ko.observable(character.modSkl);
+            this.modSpdBase = ko.observable(character.modSpd);
+            this.modLckBase = ko.observable(character.modLck);
+            this.modDefBase = ko.observable(character.modDef);
+            this.modResBase = ko.observable(character.modRes);
             this.parentId = ko.observable(character.parentID);
+            // selectedParent will be the id of the second parent
+            this.selectedParent = ko.observable();
+            // avatarAsset/Flaw will be the AssetFlawViewModel object
             this.avatarAsset = ko.observable();
             this.avatarFlaw = ko.observable();
             this.isPaired = ko.observable(false);
             this.isPairMain = ko.observable(false);
             this.isMarried = ko.observable(false);
             this.isInitialized = ko.observable(false);
+            // selectedClass will be the ClassViewModel object
+            this.selectedClass = ko.observable();
             this.supports = ko.observableArray([]);
             this.baseClasses = ko.observableArray([]);
             this.promotedClasses = ko.observableArray([]);
@@ -45,6 +57,65 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.str = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.mag = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.skl = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.spd = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.lck = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.def = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.res = ko.computed({
+                read: function () {
+                    var total = 0;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+
+            this.selectedParent.subscribe(function (value) {
+                if (value) {
+                    this.getClassesChild();
+                    this.getSkillsInheritedUnique();
+                } else {
+                    this.getClasses();
+                    this.inheritedSkills([]);
+                }
+            }, this);
         };
 
         CharacterViewModel.prototype = {
@@ -80,6 +151,23 @@
                 })
                 .fail(this.logError);
             },
+            getClassesChild: function () {
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/parents/%s/%s/classes",
+                    ko.unwrap(this.id),
+                    ko.unwrap(this.parentId),
+                    ko.unwrap(this.selectedParent));
+                $.getJSON(url)
+                .done(function (data) {
+                    var classes = [];
+                    ko.utils.arrayForEach(data, function (c) {
+                        classes.push(c);
+                    });
+                    that.baseClasses(classes);
+                    that.getPromotedClasses();
+                })
+                .fail(this.logError);
+            },
             getPromotedClasses: function () {
                 var that = this;
                 var ids = this.baseClasses();
@@ -104,6 +192,22 @@
                         skills.push(s);
                     });
                     that.skills(skills);
+                })
+                .fail(this.logError);
+            },
+            getSkillsInheritedUnique: function () {
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/parents/%s/%s/skills",
+                    ko.unwrap(this.id),
+                    ko.unwrap(this.parentId),
+                    ko.unwrap(this.selectedParent));
+                $.getJSON(url)
+                .done(function (data) {
+                    var skills = [];
+                    ko.utils.arrayForEach(data, function (s) {
+                        skills.push(s);
+                    });
+                    that.inheritedSkills(skills);
                 })
                 .fail(this.logError);
             },

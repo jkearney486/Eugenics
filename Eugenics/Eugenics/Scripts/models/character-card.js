@@ -74,27 +74,60 @@
                 deferEvaluation: true,
                 owner: this
             });
-            /*this.baseClasses = ko.computed({
-                read: function () {
-                    return ko.utils.arrayFilter(this.classes(), function (c) {
-                        return ko.unwrap(c.isBaseClass);
-                    });
-                },
-                deferEvaluation: true,
-                owner: this
-            });
-            this.promotedClasses = ko.computed({
-                read: function () {
-                    return ko.utils.arrayFilter(this.classes(), function (c) {
-                        return !ko.unwrap(c.isBaseClass);
-                    });
-                },
-                deferEvaluation: true,
-                owner: this
-            });*/
         };
 
-
+        CharacterCardViewModel.prototype = {
+            // character here will be the CharacterNameplateViewModel
+            // this will be the CharacterCardViewModel
+            selectCharacter: function (character) {
+                this.character.selectedParent(character.characterId);
+                this.setupChild();
+            },
+            setupChild: function () {
+                var firstParent = this.getCharacterById(this.character.parentId());
+                var secondParent = this.getCharacterById(this.character.selectedParent());
+                var str, mag, skl, spd, lck, def, res;
+                var isChildParent = firstParent.isChild() || secondParent.isChild();
+                str = firstParent.modStr() + secondParent.modStr();
+                mag = firstParent.modMag() + secondParent.modMag();
+                skl = firstParent.modSkl() + secondParent.modSkl();
+                spd = firstParent.modSpd() + secondParent.modSpd();
+                lck = firstParent.modLck() + secondParent.modLck();
+                def = firstParent.modDef() + secondParent.modDef();
+                res = firstParent.modRes() + secondParent.modRes();
+                if (!isChildParent) {
+                    str += this.character.modStrBase();
+                    mag += this.character.modMagBase();
+                    skl += this.character.modSklBase();
+                    spd += this.character.modSpdBase();
+                    lck += this.character.modLckBase();
+                    def += this.character.modDefBase();
+                    res += this.character.modResBase();
+                }
+                this.character.modStr(str);
+                this.character.modMag(mag);
+                this.character.modSkl(skl);
+                this.character.modSpd(spd);
+                this.character.modLck(lck);
+                this.character.modDef(def);
+                this.character.modRes(res);
+            },
+            getCharacterById: function (id) {
+                return ko.utils.arrayFirst(this.characters(), function (character) {
+                    return ko.unwrap(character.id) === id;
+                });
+            },
+            getClassById: function (id) {
+                return ko.utils.arrayFirst(this.classes(), function (c) {
+                    return ko.unwrap(c.id) === id;
+                });
+            },
+            getSkillById: function (id) {
+                return ko.utils.arrayFirst(this.skills(), function (skill) {
+                    return ko.unwrap(skill.id) === id;
+                });
+            }
+        };
 
         return {
             viewModel: {

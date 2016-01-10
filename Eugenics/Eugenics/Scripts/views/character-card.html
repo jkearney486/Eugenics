@@ -52,7 +52,7 @@
                         <!--/ko-->
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
-                         data-bind="attr: { id: parentsTabId }">
+                         data-bind="attr: { id: parentsTabId }, delegatedHandler: 'click'">
                         <!--ko if: character.isChild-->
                         <parent-panel params="parentId: character.parentId, 
                             parents: character.parents, 
@@ -81,8 +81,12 @@
                                 </skill-nameplate>
                             </div>
                             <div class="inherited-skills" data-bind="visible: character.isChild">
-                                <div class="skill">
-                                    <span>TODO: Inherited Skills</span>
+                                <div>
+                                    <strong>Unique Inherited Skills</strong>
+                                </div>
+                                <div data-bind="foreach: character.inheritedSkills">
+                                    <skill-nameplate params="skills: $parent.skills, id: $data">
+                                    </skill-nameplate>
                                 </div>
                             </div>
                         </div>
