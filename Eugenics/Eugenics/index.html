@@ -29,15 +29,17 @@
             </div>
             <!--/ko-->
             <!--ko if: selectedCharacters().length-->
-            <div class="mdl-grid" data-bind="foreach: selectedCharacters, delegatedHandler: 'click'">
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                    <character-card params="index: $index(), character: $data, 
+            <div data-bind="foreach: selectedCharacters, delegatedHandler: 'click'">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <character-card params="index: $index(), character: $data,
                         characters: $parent.characters,
                         classes: $parent.classes,
                         skills: $parent.skills,
                         assets: $parent.assets,
                         flaws: $parent.flaws">
-                    </character-card>
+                        </character-card>
+                    </div>
                 </div>
             </div>
             <!--/ko-->

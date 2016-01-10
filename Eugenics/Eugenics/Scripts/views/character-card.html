@@ -26,6 +26,7 @@
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: avatarTabId }">
+                        <!--ko if: character.isAvatar-->
                         <div class="panel-container">
                             <div class="avatar-assets">
                                 <div>
@@ -48,6 +49,7 @@
                                 <!--/ko-->
                             </div>
                         </div>
+                        <!--/ko-->
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: parentsTabId }">
