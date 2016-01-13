@@ -27,14 +27,14 @@
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: avatarTabId }">
                         <!--ko if: character.isAvatar-->
-                        <div class="panel-container">
+                        <div class="panel-container" data-bind="delegatedHandler: 'click'">
                             <div class="avatar-assets">
                                 <div>
                                     <strong>Asset</strong>
                                 </div>
                                 <!--ko foreach: assets-->
                                 <div class="asset-flaw">
-                                    <span data-bind="text: name"></span>
+                                    <span data-click="selectAsset" data-bind="text: name, css: { 'selected': id() === $parent.character.selectedAssetId() }"></span>
                                 </div>
                                 <!--/ko-->
                             </div>
@@ -44,7 +44,7 @@
                                 </div>
                                 <!--ko foreach: flaws-->
                                 <div class="asset-flaw">
-                                    <span data-bind="text: name"></span>
+                                    <span data-click="selectFlaw" data-bind="text: name, css: { 'selected': id() === $parent.character.selectedFlawId() }"></span>
                                 </div>
                                 <!--/ko-->
                             </div>

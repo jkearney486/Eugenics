@@ -77,9 +77,10 @@
         };
 
         CharacterCardViewModel.prototype = {
-            // character here will be the CharacterNameplateViewModel
-            // this will be the CharacterCardViewModel
             selectParent: function (character) {
+                // character will be the CharacterNameplateViewModel
+                // this will be the CharacterCardViewModel
+                this.character.selectedClass(null);
                 this.character.selectedParent(character.characterId);
                 this.setupChild();
             },
@@ -88,13 +89,31 @@
                 var secondParent = this.getCharacterById(this.character.selectedParent());
                 var str, mag, skl, spd, lck, def, res;
                 var isChildParent = firstParent.isChild() || secondParent.isChild();
-                str = firstParent.modStr() + secondParent.modStr();
-                mag = firstParent.modMag() + secondParent.modMag();
-                skl = firstParent.modSkl() + secondParent.modSkl();
-                spd = firstParent.modSpd() + secondParent.modSpd();
-                lck = firstParent.modLck() + secondParent.modLck();
-                def = firstParent.modDef() + secondParent.modDef();
-                res = firstParent.modRes() + secondParent.modRes();
+                str = 0;
+                mag = 0;
+                skl = 0;
+                spd = 0;
+                lck = 0;
+                def = 0;
+                res = 0;
+                if (firstParent) {
+                    str += firstParent.modStr();
+                    mag += firstParent.modMag();
+                    skl += firstParent.modSkl();
+                    spd += firstParent.modSpd();
+                    lck += firstParent.modLck();
+                    def += firstParent.modDef();
+                    res += firstParent.modRes();
+                }
+                if (secondParent) {
+                    str += secondParent.modStr();
+                    mag += secondParent.modMag();
+                    skl += secondParent.modSkl();
+                    spd += secondParent.modSpd();
+                    lck += secondParent.modLck();
+                    def += secondParent.modDef();
+                    res += secondParent.modRes();
+                }
                 if (!isChildParent) {
                     str += this.character.modStrBase();
                     mag += this.character.modMagBase();
@@ -115,6 +134,12 @@
             selectClass: function (selectedClass) {
                 var classObj = this.getClassById(ko.unwrap(selectedClass.classId));
                 this.character.selectedClass(classObj);
+            },
+            selectAsset: function (asset) {
+                this.character.avatarAsset(asset);
+            },
+            selectFlaw: function (flaw) {
+                this.character.avatarFlaw(flaw);
             },
             getCharacterById: function (id) {
                 return ko.utils.arrayFirst(this.characters(), function (character) {

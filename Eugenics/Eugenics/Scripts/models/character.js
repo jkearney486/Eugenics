@@ -68,6 +68,28 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.selectedAssetId = ko.computed({
+                read: function () {
+                    var asset = this.avatarAsset();
+                    if (asset) {
+                        return ko.unwrap(asset.id);
+                    }
+                    return null;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.selectedFlawId = ko.computed({
+                read: function () {
+                    var flaw = this.avatarFlaw();
+                    if (flaw) {
+                        return ko.unwrap(flaw.id);
+                    }
+                    return null;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
             this.str = ko.computed({
                 read: function () {
                     var total = 0;
@@ -190,6 +212,12 @@
                     this.inheritedSkills([]);
                 }
             }, this);
+            this.avatarAsset.subscribe(function (value) {
+                this.calculateStatMods();
+            }, this);
+            this.avatarFlaw.subscribe(function (value) {
+                this.calculateStatMods();
+            }, this);
         };
 
         CharacterViewModel.prototype = {
@@ -298,6 +326,43 @@
                     that.parents(parents);
                 })
                 .fail(this.logError);
+            },
+            calculateStatMods: function () {
+                var asset = this.avatarAsset();
+                var flaw = this.avatarFlaw();
+                var str, mag, skl, spd, lck, def, res;
+                str = 0;
+                mag = 0;
+                skl = 0;
+                spd = 0;
+                lck = 0;
+                def = 0;
+                res = 0;
+                if (asset) {
+                    str += asset.str();
+                    mag += asset.mag();
+                    skl += asset.skl();
+                    spd += asset.spd();
+                    lck += asset.lck();
+                    def += asset.def();
+                    res += asset.res();
+                }
+                if (flaw) {
+                    str -= flaw.str();
+                    mag -= flaw.mag();
+                    skl -= flaw.skl();
+                    spd -= flaw.spd();
+                    lck -= flaw.lck();
+                    def -= flaw.def();
+                    res -= flaw.res();
+                }
+                this.modStr(str);
+                this.modMag(mag);
+                this.modSkl(skl);
+                this.modSpd(spd);
+                this.modLck(lck);
+                this.modDef(def);
+                this.modRes(res);
             },
             initialize: function () {
                 if (!this.isInitialized()) {

@@ -23,7 +23,7 @@
             });
             this.characterCss = ko.computed({
                 read: function () {
-                    return this.selected() ? "selected" : "";
+                    return ko.unwrap(this.selected) ? "selected" : "";
                 },
                 deferEvaluation: true,
                 owner: this
