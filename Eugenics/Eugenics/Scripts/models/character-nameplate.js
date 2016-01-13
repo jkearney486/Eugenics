@@ -23,7 +23,14 @@
             });
             this.characterCss = ko.computed({
                 read: function () {
-                    return ko.unwrap(this.selected) ? "selected" : "";
+                    var css = "";
+                    if (ko.unwrap(this.selected)) {
+                        css += " selected ";
+                    }
+                    if (this.selectedCharacter().isMarried()) {
+                        css += " married ";
+                    }
+                    return css;
                 },
                 deferEvaluation: true,
                 owner: this

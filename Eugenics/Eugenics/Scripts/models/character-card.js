@@ -82,13 +82,24 @@
             selectParent: function (character) {
                 // character will be the CharacterNameplateViewModel
                 // this will be the CharacterCardViewModel
-                this.character.selectedParent(this.getCharacterById(character.characterId));
+                var selectedCharacter = this.getCharacterById(character.characterId);
+                var oldParent;
+                if (!selectedCharacter.isMarried()) {
+                    oldParent = this.character.selectedParent();
+                    if (oldParent) {
+                        oldParent.marriagePartner(null);
+                    }
+                    this.character.selectedParent(this.getCharacterById(character.characterId));
+                }
             },
             setupChild: function () {
                 var mainParent;
                 if (this.character.isChild()) {
                     mainParent = this.getCharacterById(this.character.parentId());
                     this.character.mainParent(mainParent);
+                    if (mainParent.isMarried()) {
+                        this.character.selectedParent(mainParent.marriagePartner());
+                    }
                     this.character.calculateStatMods();
                 }
             },
@@ -101,6 +112,23 @@
             },
             selectFlaw: function (flaw) {
                 this.character.avatarFlaw(flaw);
+            },
+            selectSkill: function (selectedSkill) {
+                var skill;
+                var selected = false;
+                if (this.character.selectedSkills().length < 5) {
+                    skill = this.getSkillById(ko.unwrap(selectedSkill.skillId));
+                    selected = !!ko.utils.arrayFirst(this.character.selectedSkills(), function (s) {
+                        return skill === s;
+                    });
+                    if (!selected) {
+                        this.character.selectedSkills.push(skill);
+                    }
+                }
+            },
+            removeSkill: function (selectedSkill) {
+                var skill = this.getSkillById(ko.unwrap(selectedSkill.skillId));
+                this.character.selectedSkills.remove(skill);
             },
             getCharacterById: function (id) {
                 return ko.utils.arrayFirst(this.characters(), function (character) {

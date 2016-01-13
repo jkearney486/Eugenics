@@ -16,7 +16,7 @@
             this.modSpd = ko.observable(character.modSpd);
             this.modLck = ko.observable(character.modLck);
             this.modDef = ko.observable(character.modDef);
-            this.modRes = ko.observable(character.modRes);
+            this.modRes = ko.observable(character.modRes).extend({ notify: "always" });
             this.modStrBase = ko.observable(character.modStr);
             this.modMagBase = ko.observable(character.modMag);
             this.modSklBase = ko.observable(character.modSkl);
@@ -32,9 +32,9 @@
             // avatarAsset/Flaw will be the AssetFlawViewModel object
             this.avatarAsset = ko.observable();
             this.avatarFlaw = ko.observable();
+            this.marriagePartner = ko.observable();
             this.isPaired = ko.observable(false);
             this.isPairMain = ko.observable(false);
-            this.isMarried = ko.observable(false);
             this.isInitialized = ko.observable(false);
             // selectedClass will be the ClassViewModel object
             this.selectedClass = ko.observable();
@@ -44,6 +44,7 @@
             this.skills = ko.observableArray([]);
             this.inheritedSkills = ko.observableArray([]);
             this.parents = ko.observableArray([]);
+            this.selectedSkills = ko.observableArray([]);
 
             this.isChild = ko.computed({
                 read: function () {
@@ -55,6 +56,13 @@
             this.isAvatar = ko.computed({
                 read: function () {
                     return this.name().search("Avatar") != -1;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.isMarried = ko.computed({
+                read: function () {
+                    return !!this.marriagePartner();
                 },
                 deferEvaluation: true,
                 owner: this
@@ -103,6 +111,45 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.updateStat = ko.computed({
+                read: function () {
+                    // Unfortunate hack to create a dependency on both parent's
+                    // modRes parameter so that if it changes, the child will
+                    // recalculate their own stats based on the new ones of the parent.
+                    // Have to use modRes, since that's the last one that gets assigned
+                    // in the avatar stat calculation function.
+                    // If we use modStr for example, since these dependencies execute
+                    // synchronously, this updateStat computed will be called before
+                    // the rest of the stats are assigned (mag thru res).
+                    // This tells me that this is a really bad way of doing this
+                    // so hopefully I can come up with something better later on...
+                    var selectedParent = this.selectedParent();
+                    var mainParent = this.mainParent();
+                    if (selectedParent) {
+                        selectedParent.modRes();
+                    }
+                    if (mainParent) {
+                        mainParent.modRes();
+                    }
+                },
+                deferEvaluation: true,
+                owner: this
+            }).extend({ notify: "always" });
+            this.updateParents = ko.computed({
+                read: function () {
+                    // U.G.L.Y.
+                    var mainParent = this.mainParent();
+                    var selectedParent = this.selectedParent();
+                    if (mainParent) {
+                        mainParent.isMarried();
+                    }
+                    if (selectedParent) {
+                        selectedParent.isMarried();
+                    }
+                },
+                deferEvaluation: true,
+                owner: this
+            }).extend({ notify: "always" });
             this.str = ko.computed({
                 read: function () {
                     var total = 0;
@@ -226,6 +273,20 @@
                     this.getClasses();
                     this.inheritedSkills([]);
                 }
+            }, this);
+            this.selectedParent.subscribe(function (value) {
+                if (value) {
+                    value.marriagePartner(this.mainParent());
+                    this.mainParent().marriagePartner(value);
+                } else {
+                    this.mainParent().marriagePartner(null);
+                }
+            }, this);
+            this.updateStat.subscribe(function (value) {
+                this.calculateStatMods();
+            }, this);
+            this.updateParents.subscribe(function (value) {
+                this.refreshParents();
             }, this);
             this.avatarAsset.subscribe(function (value) {
                 this.calculateAvatarStatMods();
@@ -427,6 +488,18 @@
                 this.modLck(lck);
                 this.modDef(def);
                 this.modRes(res);
+            },
+            refreshParents: function () {
+                var mainParent = this.mainParent();
+                var selectedParent = this.selectedParent();
+
+                if (!mainParent.isMarried()) {
+                    this.selectedParent(null);
+                } else {
+                    if (mainParent.marriagePartner() !== selectedParent) {
+                        this.selectedParent(mainParent.marriagePartner());
+                    }
+                }
             },
             initialize: function () {
                 if (!this.isInitialized()) {

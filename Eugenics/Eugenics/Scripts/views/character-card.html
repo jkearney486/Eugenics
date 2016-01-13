@@ -76,9 +76,9 @@
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel"
                          data-bind="attr: { id: skillsTabId }">
-                        <div class="panel-container panel-container-skills">
+                        <div class="panel-container panel-container-skills" data-bind="delegatedHandler: 'click'">
                             <div class="own-skills" data-bind="foreach: character.skills">
-                                <skill-nameplate params="skills: $parent.skills, id: $data">
+                                <skill-nameplate params="skills: $parent.skills, id: $data, attr: { 'data-click': 'selectSkill' }, selected: $parent.character.selectedSkills">
                                 </skill-nameplate>
                             </div>
                             <div class="inherited-skills" data-bind="visible: character.isChild">
@@ -140,6 +140,10 @@
                         <span class="stat-value" data-bind="text: character.res"></span>
                         <span class="stat-bonus">+10</span>
                     </div>
+                </div>
+                <div class="selected-skills" data-bind="foreach: character.selectedSkills, delegatedHandler: 'click'">
+                    <skill-nameplate params="skills: $parent.skills, id: $data.id, attr: { 'data-click': 'removeSkill' }">
+                    </skill-nameplate>
                 </div>
             </div>
         </div>

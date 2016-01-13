@@ -69,11 +69,19 @@
     cursor: pointer;
 }
 
+.unit-card .options .main-tab__panel .character span.married {
+    color: #bbbbbb;
+    cursor: not-allowed;
+}
+
 .unit-card .options .main-tab__panel .character span.selected,
+.unit-card .options .main-tab__panel .character span.selected.married,
 .unit-card .options .main-tab__panel .class span.selected,
 .unit-card .options .main-tab__panel .skill span.selected,
 .unit-card .options .main-tab__panel .asset-flaw span.selected {
+    color: inherit;
     font-weight: bold;
+    cursor: initial;
 }
 
 .unit-card .info {
