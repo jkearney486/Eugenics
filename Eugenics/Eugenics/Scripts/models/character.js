@@ -57,9 +57,29 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.selectedClassId = ko.computed({
+                read: function () {
+                    var sc = this.selectedClass();
+                    if (sc) {
+                        return ko.unwrap(sc.id);
+                    }
+                    return null;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
             this.str = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxStr();
+                    }
+
+                    total += this.modStr();
+                    
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -67,6 +87,15 @@
             this.mag = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxMag();
+                    }
+
+                    total += this.modMag();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -74,6 +103,15 @@
             this.skl = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxSkl();
+                    }
+
+                    total += this.modSkl();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -81,6 +119,15 @@
             this.spd = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxSpd();
+                    }
+
+                    total += this.modSpd();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -88,6 +135,15 @@
             this.lck = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxLck();
+                    }
+
+                    total += this.modLck();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -95,6 +151,15 @@
             this.def = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxDef();
+                    }
+
+                    total += this.modDef();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -102,6 +167,15 @@
             this.res = ko.computed({
                 read: function () {
                     var total = 0;
+                    var selectedClass = this.selectedClass();
+
+                    if (selectedClass) {
+                        total = selectedClass.maxRes();
+                    }
+
+                    total += this.modRes();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this

@@ -1,10 +1,14 @@
 ﻿<div class="panel-container">
     <div class="female-parent-options" data-bind="foreach: femaleParents">
-        <character-nameplate params="characters: $parent.characters, id: $data">
+        <character-nameplate params="characters: $parent.characters, id: $data,
+            selected: $data === $parent.parentId() || $data === $parent.selectedParent(),
+            attr: { 'data-click': 'selectParent' }">
         </character-nameplate>
     </div>
     <div class="male-parent-options" data-bind="foreach: maleParents">
-        <character-nameplate params="characters: $parent.characters, id: $data">
+        <character-nameplate params="characters: $parent.characters, id: $data,
+            selected: $data === $parent.parentId() || $data === $parent.selectedParent(),
+            attr: { 'data-click': 'selectParent' }">
         </character-nameplate>
     </div>
 </div>

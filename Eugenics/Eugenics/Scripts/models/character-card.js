@@ -79,7 +79,7 @@
         CharacterCardViewModel.prototype = {
             // character here will be the CharacterNameplateViewModel
             // this will be the CharacterCardViewModel
-            selectCharacter: function (character) {
+            selectParent: function (character) {
                 this.character.selectedParent(character.characterId);
                 this.setupChild();
             },
@@ -111,6 +111,10 @@
                 this.character.modLck(lck);
                 this.character.modDef(def);
                 this.character.modRes(res);
+            },
+            selectClass: function (selectedClass) {
+                var classObj = this.getClassById(ko.unwrap(selectedClass.classId));
+                this.character.selectedClass(classObj);
             },
             getCharacterById: function (id) {
                 return ko.utils.arrayFirst(this.characters(), function (character) {

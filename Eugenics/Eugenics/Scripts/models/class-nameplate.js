@@ -8,6 +8,8 @@
         var ClassNameplateViewModel = function (params) {
             this.classes = params.classes;
             this.classId = params.id;
+            this.attr = params.attr || {};
+            this.selected = params.selected;
 
             this.selectedClass = ko.computed({
                 read: function () {
@@ -15,6 +17,13 @@
                     return ko.utils.arrayFirst(this.classes(), function (c) {
                         return ko.unwrap(c.id) === classId;
                     });
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.classCss = ko.computed({
+                read: function () {
+                    return ko.unwrap(this.selected) ? "selected" : "";
                 },
                 deferEvaluation: true,
                 owner: this

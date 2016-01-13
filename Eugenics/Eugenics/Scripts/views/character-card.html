@@ -56,19 +56,20 @@
                         <!--ko if: character.isChild-->
                         <parent-panel params="parentId: character.parentId, 
                             parents: character.parents, 
-                            characters: characters">
+                            characters: characters, 
+                            selectedParent: character.selectedParent">
                         </parent-panel>
                         <!--/ko-->
                     </div>
                     <div class="mdl-tabs__panel main-tab__panel is-active"
                          data-bind="attr: { id: classesTabId }">
-                        <div class="panel-container">
+                        <div class="panel-container" data-bind="delegatedHandler: 'click'">
                             <div class="base-classes" data-bind="foreach: character.baseClasses">
-                                <class-nameplate params="classes: $parent.classes, id: $data">
+                                <class-nameplate params="classes: $parent.classes, id: $data, selected: $data === $parent.character.selectedClassId(), attr: { 'data-click': 'selectClass' }">
                                 </class-nameplate>
                             </div>
                             <div class="promoted-classes" data-bind="foreach: character.promotedClasses">
-                                <class-nameplate params="classes: $parent.classes, id: $data">
+                                <class-nameplate params="classes: $parent.classes, id: $data, selected: $data === $parent.character.selectedClassId(), attr: { 'data-click': 'selectClass' }">
                                 </class-nameplate>
                             </div>
                         </div>
@@ -95,42 +96,48 @@
             </div>
             <div class="info">
                 <div class="selected-class">
-                    Sorcerer
+                    <!--ko ifnot: character.selectedClass-->
+                    None
+                    <!--/ko-->
+                    <!--ko if: character.selectedClass-->
+                    <class-nameplate params="classes: classes, id: character.selectedClass().id">
+                    </class-nameplate>
+                    <!--/ko-->
                 </div>
                 <div class="stats">
                     <div class="stat">
                         <span class="stat-type">Str</span>
-                        <span class="stat-value">43</span>
-                        <span class="stat-bonus">+3</span>
+                        <span class="stat-value" data-bind="text: character.str"></span>
+                        <span class="stat-bonus">+0</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Mag</span>
-                        <span class="stat-value">48</span>
+                        <span class="stat-value" data-bind="text: character.mag"></span>
                         <span class="stat-bonus">+1</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Skl</span>
-                        <span class="stat-value">44</span>
+                        <span class="stat-value" data-bind="text: character.skl"></span>
                         <span class="stat-bonus">+7</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Spd</span>
-                        <span class="stat-value">42</span>
+                        <span class="stat-value" data-bind="text: character.spd"></span>
                         <span class="stat-bonus">+5</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Lck</span>
-                        <span class="stat-value">45</span>
+                        <span class="stat-value" data-bind="text: character.lck"></span>
                         <span class="stat-bonus">+9</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Def</span>
-                        <span class="stat-value">47</span>
+                        <span class="stat-value" data-bind="text: character.def"></span>
                         <span class="stat-bonus">+2</span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Res</span>
-                        <span class="stat-value">49</span>
+                        <span class="stat-value" data-bind="text: character.res"></span>
                         <span class="stat-bonus">+10</span>
                     </div>
                 </div>

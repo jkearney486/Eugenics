@@ -9,6 +9,7 @@
             this.parentId = params.parentId;
             this.parents = params.parents;
             this.characters = params.characters;
+            this.selectedParent = params.selectedParent;
 
             this.mainParent = ko.computed({
                 read: function () {
