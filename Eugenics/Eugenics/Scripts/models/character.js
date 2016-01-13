@@ -25,7 +25,9 @@
             this.modDefBase = ko.observable(character.modDef);
             this.modResBase = ko.observable(character.modRes);
             this.parentId = ko.observable(character.parentID);
-            // selectedParent will be the id of the second parent
+            // mainParent will be the CharacterViewModel of the main parent (from parentId)
+            this.mainParent = ko.observable();
+            // selectedParent will be the CharacterViewModel of the second parent
             this.selectedParent = ko.observable();
             // avatarAsset/Flaw will be the AssetFlawViewModel object
             this.avatarAsset = ko.observable();
@@ -84,6 +86,17 @@
                     var flaw = this.avatarFlaw();
                     if (flaw) {
                         return ko.unwrap(flaw.id);
+                    }
+                    return null;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.selectedParentId = ko.computed({
+                read: function () {
+                    var selectedParent = this.selectedParent();
+                    if (selectedParent) {
+                        return ko.unwrap(selectedParent.id);
                     }
                     return null;
                 },
@@ -203,7 +216,9 @@
                 owner: this
             });
 
-            this.selectedParent.subscribe(function (value) {
+            this.selectedParentId.subscribe(function (value) {
+                this.selectedClass(null);
+                this.calculateStatMods();
                 if (value) {
                     this.getClassesChild();
                     this.getSkillsInheritedUnique();
@@ -213,10 +228,10 @@
                 }
             }, this);
             this.avatarAsset.subscribe(function (value) {
-                this.calculateStatMods();
+                this.calculateAvatarStatMods();
             }, this);
             this.avatarFlaw.subscribe(function (value) {
-                this.calculateStatMods();
+                this.calculateAvatarStatMods();
             }, this);
         };
 
@@ -258,7 +273,7 @@
                 var url = sprintf.sprintf("api/characters/%s/parents/%s/%s/classes",
                     ko.unwrap(this.id),
                     ko.unwrap(this.parentId),
-                    ko.unwrap(this.selectedParent));
+                    ko.unwrap(this.selectedParentId));
                 $.getJSON(url)
                 .done(function (data) {
                     var classes = [];
@@ -302,7 +317,7 @@
                 var url = sprintf.sprintf("api/characters/%s/parents/%s/%s/skills",
                     ko.unwrap(this.id),
                     ko.unwrap(this.parentId),
-                    ko.unwrap(this.selectedParent));
+                    ko.unwrap(this.selectedParentId));
                 $.getJSON(url)
                 .done(function (data) {
                     var skills = [];
@@ -328,6 +343,55 @@
                 .fail(this.logError);
             },
             calculateStatMods: function () {
+                var firstParent = this.mainParent();
+                var secondParent = this.selectedParent();
+                var str, mag, skl, spd, lck, def, res;
+                var isChildParent = false;
+                str = 0;
+                mag = 0;
+                skl = 0;
+                spd = 0;
+                lck = 0;
+                def = 0;
+                res = 0;
+                if (firstParent) {
+                    isChildParent = isChildParent || firstParent.isChild();
+                    str += firstParent.modStr();
+                    mag += firstParent.modMag();
+                    skl += firstParent.modSkl();
+                    spd += firstParent.modSpd();
+                    lck += firstParent.modLck();
+                    def += firstParent.modDef();
+                    res += firstParent.modRes();
+                }
+                if (secondParent) {
+                    isChildParent = isChildParent || secondParent.isChild();
+                    str += secondParent.modStr();
+                    mag += secondParent.modMag();
+                    skl += secondParent.modSkl();
+                    spd += secondParent.modSpd();
+                    lck += secondParent.modLck();
+                    def += secondParent.modDef();
+                    res += secondParent.modRes();
+                }
+                if (!isChildParent) {
+                    str += this.modStrBase();
+                    mag += this.modMagBase();
+                    skl += this.modSklBase();
+                    spd += this.modSpdBase();
+                    lck += this.modLckBase();
+                    def += this.modDefBase();
+                    res += this.modResBase();
+                }
+                this.modStr(str);
+                this.modMag(mag);
+                this.modSkl(skl);
+                this.modSpd(spd);
+                this.modLck(lck);
+                this.modDef(def);
+                this.modRes(res);
+            },
+            calculateAvatarStatMods: function () {
                 var asset = this.avatarAsset();
                 var flaw = this.avatarFlaw();
                 var str, mag, skl, spd, lck, def, res;
