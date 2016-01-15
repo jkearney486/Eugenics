@@ -44,5 +44,22 @@ namespace Eugenics.Dao.Dapper
                 }).FirstOrDefault();
             }
         }
+
+        public IEnumerable<int> GetNonClassDLCSkills()
+        {
+            const string sql =
+                @"SELECT s.[Id]
+                FROM [Skill] as s
+                WHERE s.[DLC] = 1
+                AND NOT EXISTS
+                (SELECT cs.[SkillId]
+                 FROM [ClassSkill] as cs
+                 WHERE cs.[SkillId] = s.[Id])";
+
+            using (var connection = GetConnection())
+            {
+                return connection.Query<int>(sql);
+            }
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Eugenics.Dao.Interface
     {
         IEnumerable<Skill> GetAll();
         Skill GetById(int id);
+        IEnumerable<int> GetNonClassDLCSkills();
     }
 }
