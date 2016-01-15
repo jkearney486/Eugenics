@@ -18,6 +18,8 @@ CREATE TABLE [dbo].[Skill](
 	[ActivationStat] [varchar](50) NULL,
 	[ActivationMultiplier] [float] NULL,
 	[DLC] [bit] NOT NULL CONSTRAINT [DF_Skill_DLC]  DEFAULT ((0)),
+	[MaleInheritable] [bit] NOT NULL CONSTRAINT [DF_Skill_MaleInheritable]  DEFAULT ((1)),
+	[FemaleInheritable] [bit] NOT NULL CONSTRAINT [DF_Skill_FemaleInheritable]  DEFAULT ((1)),
  CONSTRAINT [PK_Skill] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

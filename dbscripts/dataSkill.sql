@@ -1,9 +1,9 @@
 set identity_insert [Skill] on
 
-insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (1 , 'Dual Strike+', 'Adds 10% to the Dual Strike rate', NULL, NULL)    
-insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (2 , 'Charm', 'Hit rate and Avoid +5 to all allies within a 3 tile radius', NULL, NULL)    
-insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (3 , 'Aether', 'Attack twice consecutively, with the first strike having a Sol effect and the second strike having a Luna effect', 'skl', 0.5)    
-insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (4 , 'Rightful King', 'Adds 10% to Skill activation rates', NULL, NULL)    
+insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier], [MaleInheritable], [FemaleInheritable]) values (1 , 'Dual Strike+', 'Adds 10% to the Dual Strike rate', NULL, NULL, 0, 0)    
+insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier], [MaleInheritable], [FemaleInheritable]) values (2 , 'Charm', 'Hit rate and Avoid +5 to all allies within a 3 tile radius', NULL, NULL, 0, 0)    
+insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier], [MaleInheritable], [FemaleInheritable]) values (3 , 'Aether', 'Attack twice consecutively, with the first strike having a Sol effect and the second strike having a Luna effect', 'skl', 0.5, 0, 0)    
+insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier], [MaleInheritable], [FemaleInheritable]) values (4 , 'Rightful King', 'Adds 10% to Skill activation rates', NULL, NULL, 0, 0)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (5 , 'Veteran', 'Experience gain x 1.5 when paired up', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (6 , 'Solidarity', 'Critical and Critical Avoid +10 to adjacent allies', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (7 , 'Ignis', 'Adds (Magic)/2 to Strength when dealing physical damage and (Strength)/2 to Magic when dealing magical damage', 'skl', 1)    
@@ -79,7 +79,7 @@ insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationM
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (77, 'Aptitude', 'Adds 20% to all growth rates during Level Ups', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (78, 'Underdog', 'Hit rate and Avoid +15 when user''s Level is lower than the enemy (promoted units count as Level +20)', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (79, 'Luck +4', 'Luck +4', NULL, NULL)    
-insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (80, 'Special Dance', 'Strength, Magic, Defense and Resistance +2 for one Turn for the unit who receives the user''s Dance', NULL, NULL)    
+insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier], [MaleInheritable], [FemaleInheritable]) values (80, 'Special Dance', 'Strength, Magic, Defense and Resistance +2 for one Turn for the unit who receives the user''s Dance', NULL, NULL, 0, 0)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (81, 'Even Rhythm', 'Hit rate and Avoid +10 during even numbered Turns', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (82, 'Beastbane', 'Deals effective damage to Beast units when user is a Taguel', NULL, NULL)    
 insert into [Skill] ([Id], [Name], [Description], [ActivationStat], [ActivationMultiplier]) values (83, 'Odd Rhythm', 'Hit rate and Avoid +10 during odd numbered Turns', NULL, NULL)    

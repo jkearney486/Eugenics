@@ -44,20 +44,40 @@ namespace Eugenics.Dao.Dapper
             }
         }
 
-        public IEnumerable<int> GetNonDLCSkills(IEnumerable<int> ids)
+        public IEnumerable<int> GetInheritableSkills(IEnumerable<int> ids, bool maleChild, bool femaleChild)
         {
-            const string sql =
+            const string maleChildSql =
                 @"SELECT c.[SkillId]
                 FROM [ClassSkill] as c
                 JOIN [Skill] as s on c.[SkillId] = s.[Id]
-                WHERE s.[DLC] = 0 AND c.[ClassId] IN @Ids";
+                WHERE s.[DLC] = 0 
+                AND s.[MaleInheritable] = 1
+                AND c.[ClassId] IN @Ids";
+
+            const string femaleChildSql =
+                @"SELECT c.[SkillId]
+                FROM [ClassSkill] as c
+                JOIN [Skill] as s on c.[SkillId] = s.[Id]
+                WHERE s.[DLC] = 0 
+                AND s.[FemaleInheritable] = 1
+                AND c.[ClassId] IN @Ids";
 
             using (var connection = GetConnection())
             {
-                return connection.Query<int>(sql, new
+                if (femaleChild)
                 {
-                    Ids = ids
-                });
+                    return connection.Query<int>(femaleChildSql, new
+                    {
+                        Ids = ids
+                    });
+                }
+                else
+                {
+                    return connection.Query<int>(maleChildSql, new
+                    {
+                        Ids = ids
+                    });
+                }
             }
         }
     }

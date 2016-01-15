@@ -86,7 +86,7 @@ namespace Eugenics.Controllers
             var femaleParentClasses = _GetAllClasses(femaleParentId);
             var maleParentClasses = _GetAllClasses(maleParentId);
             var parentClasses = femaleParentClasses.Union(maleParentClasses).Distinct();
-            var parentSkills = _classSkillDao.GetNonDLCSkills(parentClasses);
+            var parentSkills = _classSkillDao.GetInheritableSkills(parentClasses, maleChild, femaleChild);
             return uniqueInheritedSkills.Union(parentSkills).Distinct()
                 .Except(childSkills);
         }
