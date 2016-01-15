@@ -45,7 +45,6 @@ namespace Eugenics
             container.Register<IClassSetDao, DapperClassSetDao>(new PerContainerLifetime());
             container.Register<IClassSkillDao, DapperClassSkillDao>(new PerContainerLifetime());
             container.Register<IInheritanceClassSetDao, DapperInheritanceClassSetDao>(new PerContainerLifetime());
-            container.Register<IInheritanceSkillDao, DapperInheritanceSkillDao>(new PerContainerLifetime());
             container.Register<ISkillDao, DapperSkillDao>(new PerContainerLifetime());
             container.Register<ISupportDao, DapperSupportDao>(new PerContainerLifetime());
 

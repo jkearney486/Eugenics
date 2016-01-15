@@ -14,15 +14,13 @@ namespace Eugenics.Controllers
         private readonly IClassSetDao _classSetDao;
         private readonly IClassSkillDao _classSkillDao;
         private readonly IInheritanceClassSetDao _inheritanceClassSetDao;
-        private readonly IInheritanceSkillDao _inheritanceSkillDao;
         private readonly IClassPromotionDao _classPromotionDao;
 
         public CharactersController(ICharacterDao characterDao,
             ISupportDao supportDao, IClassSetDao classSetDao,
             IClassPromotionDao classPromotionDao,
             IClassSkillDao classSkillDao,
-            IInheritanceClassSetDao inheritanceClassSetDao,
-            IInheritanceSkillDao inheritanceSkillDao)
+            IInheritanceClassSetDao inheritanceClassSetDao)
         {
             _characterDao = characterDao;
             _supportDao = supportDao;
@@ -30,7 +28,6 @@ namespace Eugenics.Controllers
             _classSkillDao = classSkillDao;
             _classPromotionDao = classPromotionDao;
             _inheritanceClassSetDao = inheritanceClassSetDao;
-            _inheritanceSkillDao = inheritanceSkillDao;
         }
         
         [HttpGet, Route("")]
@@ -67,7 +64,7 @@ namespace Eugenics.Controllers
         public IEnumerable<int> GetClasses(int id, int femaleParentId, 
             int maleParentId)
         {
-            return GetChildClasses(id, femaleParentId, maleParentId);
+            return _GetChildClasses(id, femaleParentId, maleParentId);
         }
 
         [HttpGet, Route("{id}/parents/{femaleParentId}/{maleParentId}/skills")]
@@ -77,9 +74,7 @@ namespace Eugenics.Controllers
             var gender = _characterDao.GetGender(id);
             var maleChild = gender == "Male" ? true : false;
             var femaleChild = gender == "Female" ? true : false;
-            var uniqueInheritedSkills = _inheritanceSkillDao.GetByParents(maleParentId,
-                femaleParentId, maleChild, femaleChild);
-            var childBaseClasses = GetChildClasses(id, femaleParentId, maleParentId);
+            var childBaseClasses = _GetChildClasses(id, femaleParentId, maleParentId);
             var childPromotedClasses = _classPromotionDao.GetPromotions(childBaseClasses);
             var childClasses = childBaseClasses.Union(childPromotedClasses).Distinct();
             var childSkills = _classSkillDao.GetSkills(childClasses);
@@ -87,11 +82,10 @@ namespace Eugenics.Controllers
             var maleParentClasses = _GetAllClasses(maleParentId);
             var parentClasses = femaleParentClasses.Union(maleParentClasses).Distinct();
             var parentSkills = _classSkillDao.GetInheritableSkills(parentClasses, maleChild, femaleChild);
-            return uniqueInheritedSkills.Union(parentSkills).Distinct()
-                .Except(childSkills);
+            return parentSkills.Distinct().Except(childSkills);
         }
 
-        private IEnumerable<int> GetChildClasses(int id, int femaleParentId,
+        private IEnumerable<int> _GetChildClasses(int id, int femaleParentId,
             int maleParentId)
         {
             var gender = _characterDao.GetGender(id);
