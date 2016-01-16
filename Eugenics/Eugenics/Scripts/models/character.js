@@ -367,9 +367,20 @@
                 .done(function (data) {
                     var skills = [];
                     ko.utils.arrayForEach(data, function (s) {
-                        skills.push(s);
+                        that.skills.push(s);
                     });
-                    that.skills(skills);
+                })
+                .fail(this.logError);
+            },
+            getCharacterSkills: function () {
+                var that = this;
+                var url = sprintf.sprintf("api/characters/%s/skills", ko.unwrap(this.id));
+                $.getJSON(url)
+                .done(function (data) {
+                    var skills = [];
+                    ko.utils.arrayForEach(data, function (s) {
+                        that.skills.push(s);
+                    });
                 })
                 .fail(this.logError);
             },
@@ -505,6 +516,7 @@
                 if (!this.isInitialized()) {
                     this.getSupports();
                     this.getClasses();
+                    this.getCharacterSkills();
                     if (this.isChild()) {
                         this.getParents();
                     }
