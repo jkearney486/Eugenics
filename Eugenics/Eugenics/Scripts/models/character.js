@@ -71,6 +71,15 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.isLimitBroken = ko.computed({
+                read: function () {
+                    return !!ko.utils.arrayFirst(this.selectedSkills(), function (skill) {
+                        return ko.unwrap(skill.name) === "Limit Breaker";
+                    });
+                },
+                deferEvaluation: true,
+                owner: this
+            });
             this.selectedClassId = ko.computed({
                 read: function () {
                     var sc = this.selectedClass();
@@ -161,6 +170,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxStr();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modStr();
@@ -177,6 +189,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxMag();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modMag();
@@ -193,6 +208,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxSkl();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modSkl();
@@ -209,6 +227,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxSpd();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modSpd();
@@ -225,6 +246,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxLck();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modLck();
@@ -241,6 +265,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxDef();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modDef();
@@ -257,6 +284,9 @@
 
                     if (selectedClass) {
                         total = selectedClass.maxRes();
+                        if (this.isLimitBroken()) {
+                            total += 10;
+                        }
                     }
 
                     total += this.modRes();
