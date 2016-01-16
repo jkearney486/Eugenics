@@ -28,6 +28,27 @@
             this.assets = ko.observableArray([]);
             this.flaws = ko.observableArray([]);
             this.selectedCharacters = ko.observableArray([]);
+
+            this.greatLordMale = ko.computed({
+                read: function () {
+                    var greatLord = ko.utils.arrayFirst(this.classes(), function (c) {
+                        return ko.unwrap(c.name) === "Great Lord (M)";
+                    });
+                    return ko.unwrap(greatLord.id);
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.greatLordFemale = ko.computed({
+                read: function () {
+                    var greatLord = ko.utils.arrayFirst(this.classes(), function (c) {
+                        return ko.unwrap(c.name) === "Great Lord (F)";
+                    });
+                    return ko.unwrap(greatLord.id);
+                },
+                deferEvaluation: true,
+                owner: this
+            });
         };
 
         EugenicsViewModel.prototype = {
@@ -104,7 +125,7 @@
                 this.getFlaws();
             },
             addCharacter: function (character) {
-                character.initialize();
+                character.initialize(this.greatLordMale, this.greatLordFemale);
                 this.selectedCharacters.push(character);
             },
             removeCharacter: function (card) {

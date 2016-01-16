@@ -65,11 +65,15 @@
                          data-bind="attr: { id: classesTabId }">
                         <div class="panel-container" data-bind="delegatedHandler: 'click'">
                             <div class="base-classes" data-bind="foreach: character.baseClasses">
-                                <class-nameplate params="classes: $parent.classes, id: $data, selected: $data === $parent.character.selectedClassId(), attr: { 'data-click': 'selectClass' }">
+                                <class-nameplate params="classes: $parent.classes, id: $data, 
+                                    selected: $data === $parent.character.selectedClassId(),
+                                    attr: { 'data-click': 'selectClass' }">
                                 </class-nameplate>
                             </div>
                             <div class="promoted-classes" data-bind="foreach: character.promotedClasses">
-                                <class-nameplate params="classes: $parent.classes, id: $data, selected: $data === $parent.character.selectedClassId(), attr: { 'data-click': 'selectClass' }">
+                                <class-nameplate params="classes: $parent.classes, id: $data,
+                                    selected: $data === $parent.character.selectedClassId(),
+                                    attr: { 'data-click': 'selectClass' }">
                                 </class-nameplate>
                             </div>
                         </div>
@@ -78,7 +82,9 @@
                          data-bind="attr: { id: skillsTabId }">
                         <div class="panel-container panel-container-skills" data-bind="delegatedHandler: 'click'">
                             <div class="own-skills" data-bind="foreach: character.skills">
-                                <skill-nameplate params="skills: $parent.skills, id: $data, attr: { 'data-click': 'selectSkill' }, selected: $parent.character.selectedSkills">
+                                <skill-nameplate params="skills: $parent.skills, id: $data, 
+                                    attr: { 'data-click': 'selectSkill' }, 
+                                    selected: $parent.character.selectedSkills">
                                 </skill-nameplate>
                             </div>
                             <div class="inherited-skills" data-bind="visible: character.isChild">
@@ -86,7 +92,9 @@
                                     <strong>Unique Inherited Skills</strong>
                                 </div>
                                 <div data-bind="foreach: character.inheritedSkills">
-                                    <skill-nameplate params="skills: $parent.skills, id: $data">
+                                    <skill-nameplate params="skills: $parent.skills, id: $data, 
+                                        attr: { 'data-click': 'selectSkill' }, 
+                                        selected: $parent.character.selectedSkills">
                                     </skill-nameplate>
                                 </div>
                             </div>

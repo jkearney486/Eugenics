@@ -38,6 +38,10 @@
             this.isInitialized = ko.observable(false);
             // selectedClass will be the ClassViewModel object
             this.selectedClass = ko.observable();
+            // these great lord observables will get overwritten,
+            // but felt like they should at least be initialized
+            this.greatLordMale = ko.observable();
+            this.greatLordFemale = ko.observable();
             this.supports = ko.observableArray([]);
             this.baseClasses = ko.observableArray([]);
             this.promotedClasses = ko.observableArray([]);
@@ -349,11 +353,20 @@
             getPromotedClasses: function () {
                 var that = this;
                 var ids = this.baseClasses();
+                var isFemale = this.gender() === "Female" ? true : false;
+                var greatLordMaleId = this.greatLordMale();
+                var greatLordFemaleId = this.greatLordFemale();
                 $.getJSON("api/classes/promotions", { ids: ids })
                 .done(function (data) {
                     var classes = [];
                     ko.utils.arrayForEach(data, function (c) {
-                        classes.push(c);
+                        if (c !== greatLordFemaleId && c !== greatLordMaleId) {
+                            classes.push(c);
+                        } else if (c === greatLordFemaleId && isFemale) {
+                            classes.push(c);
+                        } else if (c === greatLordMaleId && !isFemale) {
+                            classes.push(c);
+                        }
                     });
                     that.promotedClasses(classes);
                     that.getSkills();
@@ -512,8 +525,10 @@
                     }
                 }
             },
-            initialize: function () {
+            initialize: function (glm, glf) {
                 if (!this.isInitialized()) {
+                    this.greatLordFemale = glf;
+                    this.greatLordMale = glm;
                     this.getSupports();
                     this.getClasses();
                     this.getCharacterSkills();
