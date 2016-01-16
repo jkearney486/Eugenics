@@ -103,12 +103,12 @@
                 </div>
             </div>
             <div class="info">
-                <div class="selected-class">
+                <div class="selected-class" data-bind="delegatedHandler: 'click'">
                     <!--ko ifnot: character.selectedClass-->
                     None
                     <!--/ko-->
                     <!--ko if: character.selectedClass-->
-                    <class-nameplate params="classes: classes, id: character.selectedClass().id">
+                    <class-nameplate params="classes: classes, id: character.selectedClass().id, attr: { 'data-click': 'removeClass' }">
                     </class-nameplate>
                     <!--/ko-->
                 </div>
@@ -160,6 +160,9 @@
         <div class="unit-actions">
             <button title="Switch" class="switch mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
                 <i class="material-icons">autorenew</i>
+            </button>
+            <button title="Pair Up" class="pair-up mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
+                <i class="material-icons">compare_arrows</i>
             </button>
             <button title="Separate" class="separate mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
                 <i class="material-icons">swap_horiz</i>

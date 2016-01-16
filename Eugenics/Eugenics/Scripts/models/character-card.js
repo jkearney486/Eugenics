@@ -107,6 +107,9 @@
                 var classObj = this.getClassById(ko.unwrap(selectedClass.classId));
                 this.character.selectedClass(classObj);
             },
+            removeClass: function () {
+                this.character.selectedClass(null);
+            },
             selectAsset: function (asset) {
                 this.character.avatarAsset(asset);
             },
