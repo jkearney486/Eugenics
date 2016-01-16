@@ -162,14 +162,34 @@
             },
             selectPair: function (character) {
                 var pairingCharacter = this.pairingCharacter();
+                var alreadySelected = false;
                 character.isPairMain(false);
                 pairingCharacter.isPairMain(true);
                 character.isSelected(true);
                 character.initialize(this.greatLordMale, this.greatLordFemale);
                 pairingCharacter.pairPartner(character);
                 character.pairPartner(pairingCharacter);
-                this.selectedCharacters.push(character);
+                alreadySelected = !!ko.utils.arrayFirst(this.selectedCharacters(), function (c) {
+                    return c === character;
+                });
+                if (!alreadySelected) {
+                    this.selectedCharacters.push(character);
+                }
                 this.pairingCharacter(null);
+            },
+            switchPair: function (card) {
+                var character = card.character;
+                var pairedCharacter = character.pairPartner();
+                character.isPairMain(!character.isPairMain());
+                pairedCharacter.isPairMain(!pairedCharacter.isPairMain());
+            },
+            separatePair: function (card) {
+                var character = card.character;
+                var pairedCharacter = character.pairPartner();
+                character.pairPartner(null);
+                character.isPairMain(false);
+                pairedCharacter.pairPartner(null);
+                pairedCharacter.isPairMain(false);
             }
         };
 
