@@ -32,16 +32,19 @@
             // avatarAsset/Flaw will be the AssetFlawViewModel object
             this.avatarAsset = ko.observable();
             this.avatarFlaw = ko.observable();
+            // marriagePartner will be the CharacterViewModel of this character's spouse
             this.marriagePartner = ko.observable();
-            this.isPaired = ko.observable(false);
+            // pairPartner will be the CharacterViewModel of the character they are paired with
+            this.pairPartner = ko.observable();
             this.isPairMain = ko.observable(false);
             this.isInitialized = ko.observable(false);
             // selectedClass will be the ClassViewModel object
             this.selectedClass = ko.observable();
             // these great lord observables will get overwritten,
-            // but felt like they should at least be initialized
+            // but feel like they should at least be initialized
             this.greatLordMale = ko.observable();
             this.greatLordFemale = ko.observable();
+            this.isSelected = ko.observable(false);
             this.supports = ko.observableArray([]);
             this.baseClasses = ko.observableArray([]);
             this.promotedClasses = ko.observableArray([]);
@@ -67,6 +70,13 @@
             this.isMarried = ko.computed({
                 read: function () {
                     return !!this.marriagePartner();
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.isPaired = ko.computed({
+                read: function () {
+                    return !!this.pairPartner();
                 },
                 deferEvaluation: true,
                 owner: this

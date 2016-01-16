@@ -1,4 +1,17 @@
-﻿.unit-card.mdl-card {
+﻿.mdl-layout__drawer > .character-list > a.character {
+    color: #424242;
+}
+
+.mdl-layout__drawer > .character-list > a.character.selected {
+    color: #999999;
+    cursor: default;
+}
+
+.mdl-layout__drawer > .character-list > a.character.selected:hover {
+    background-color: inherit;
+}
+
+.unit-card.mdl-card {
     width:100%;
 }
 

@@ -125,11 +125,15 @@
                 this.getFlaws();
             },
             addCharacter: function (character) {
-                character.initialize(this.greatLordMale, this.greatLordFemale);
-                this.selectedCharacters.push(character);
+                if (!character.isSelected()) {
+                    character.isSelected(true);
+                    character.initialize(this.greatLordMale, this.greatLordFemale);
+                    this.selectedCharacters.push(character);
+                }
             },
             removeCharacter: function (card) {
                 this.selectedCharacters.remove(card.character);
+                card.character.isSelected(false);
             }
         };
 
