@@ -74,6 +74,209 @@
                 deferEvaluation: true,
                 owner: this
             });
+            this.strBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+                    
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.str();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairStr();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.magBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.mag();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairMag();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.sklBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.skl();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairSkl();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.spdBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.spd();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairSpd();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.lckBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.lck();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairLck();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.defBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.def();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairDef();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.resBonus = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+                    var pairCharacter, pairClass;
+                    var pairStat, pairUpStat;
+
+                    if (character.isPaired()) {
+                        pairCharacter = character.pairPartner();
+                        pairStat = pairCharacter.res();
+                        total += Math.min(3, pairStat);
+
+                        pairClass = pairCharacter.selectedClass();
+                        if (pairClass) {
+                            pairUpStat = pairClass.pairRes();
+                            if (pairUpStat > 0) {
+                                total += pairUpStat + 2;
+                            }
+                        }
+                    }
+
+                    if (total === 0) {
+                        return "";
+                    }
+                    return "+ " + total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
 
             this.setupChild();
         };

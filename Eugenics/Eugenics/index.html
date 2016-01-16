@@ -41,6 +41,17 @@
                         flaws: $parent.flaws">
                         </character-card>
                     </div>
+                    <!--ko if: isPaired-->
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <character-card params="index: $index() + 'pair', character: pairPartner,
+                        characters: $parent.characters,
+                        classes: $parent.classes,
+                        skills: $parent.skills,
+                        assets: $parent.assets,
+                        flaws: $parent.flaws">
+                        </character-card>
+                    </div>
+                    <!--/ko-->
                 </div>
             </div>
             <!--/ko-->
