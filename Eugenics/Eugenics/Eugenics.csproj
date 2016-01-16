@@ -174,6 +174,7 @@
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Dao\Dapper\DapperAvatarDao.cs" />
     <Compile Include="Dao\Dapper\DapperCharacterDao.cs" />
+    <Compile Include="Dao\Dapper\DapperCharacterSkillDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassPromotionDao.cs" />
     <Compile Include="Dao\Dapper\DapperClassSetDao.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Dao\IConnectionStringProvider.cs" />
     <Compile Include="Dao\Interface\IAvatarDao.cs" />
     <Compile Include="Dao\Interface\ICharacterDao.cs" />
+    <Compile Include="Dao\Interface\ICharacterSkillDao.cs" />
     <Compile Include="Dao\Interface\IClassDao.cs" />
     <Compile Include="Dao\Interface\IClassPromotionDao.cs" />
     <Compile Include="Dao\Interface\IClassSetDao.cs" />
