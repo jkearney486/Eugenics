@@ -157,17 +157,22 @@
         </div>
     </div>
     <div class="mdl-card__actions">
-        <div class="unit-actions">
-            <button title="Switch" class="switch mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
+        <div class="unit-actions" data-bind="visible: !character.isPaired() || character.isPairMain()">
+            <button title="Switch" data-bind="visible: character.isPaired"
+                    class="switch mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
                 <i class="material-icons">autorenew</i>
             </button>
-            <button title="Pair Up" class="pair-up mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
+            <button title="Pair Up" data-bind="visible: !character.isPaired()"
+                    data-click="pairUp"
+                    class="pair-up mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
                 <i class="material-icons">compare_arrows</i>
             </button>
-            <button title="Separate" class="separate mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
+            <button title="Separate" data-bind="visible: character.isPaired"
+                    class="separate mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised">
                 <i class="material-icons">swap_horiz</i>
             </button>
-            <button title="Remove" class="remove mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised"
+            <button title="Remove"
+                    class="remove mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--raised"
                     data-click="removeCharacter">
                 <i class="material-icons">clear</i>
             </button>

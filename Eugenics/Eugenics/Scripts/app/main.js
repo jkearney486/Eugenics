@@ -22,6 +22,7 @@
         AssetFlawViewModel) {
         
         var EugenicsViewModel = function () {
+            this.pairingCharacter = ko.observable();
             this.characters = ko.observableArray([]);
             this.classes = ko.observableArray([]);
             this.skills = ko.observableArray([]);
@@ -45,6 +46,27 @@
                         return ko.unwrap(c.name) === "Great Lord (F)";
                     });
                     return ko.unwrap(greatLord.id);
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.isPairing = ko.computed({
+                read: function () {
+                    return !!this.pairingCharacter();
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.pairableCharacters = ko.computed({
+                read: function () {
+                    var characters = [];
+                    var pairingCharacter = this.pairingCharacter();
+                    ko.utils.arrayForEach(this.characters(), function (character) {
+                        if (character !== pairingCharacter) {
+                            characters.push(character);
+                        }
+                    });
+                    return characters;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -134,6 +156,20 @@
             removeCharacter: function (card) {
                 this.selectedCharacters.remove(card.character);
                 card.character.isSelected(false);
+            },
+            pairUp: function (card) {
+                this.pairingCharacter(card.character);
+            },
+            selectPair: function (character) {
+                var pairingCharacter = this.pairingCharacter();
+                character.isPairMain(false);
+                pairingCharacter.isPairMain(true);
+                character.isSelected(true);
+                character.initialize(this.greatLordMale, this.greatLordFemale);
+                pairingCharacter.pairPartner(character);
+                character.pairPartner(pairingCharacter);
+                this.selectedCharacters.push(character);
+                this.pairingCharacter(null);
             }
         };
 

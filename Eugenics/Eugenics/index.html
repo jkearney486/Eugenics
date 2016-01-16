@@ -14,6 +14,7 @@
 <body>
     <div id="main" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div class="mdl-layout__drawer">
+            <!--ko ifnot: isPairing-->
             <span class="mdl-layout-title">Eugenics</span>
             <div class="mdl-navigation character-list"
                  data-bind="foreach: characters, delegatedHandler: 'click'">
@@ -22,6 +23,17 @@
                     data-click="addCharacter">
                 </a>
             </div>
+            <!--/ko-->
+            <!--ko if: isPairing-->
+            <span class="mdl-layout-title">Pair Up</span>
+            <div class="mdl-navigation character-list"
+                 data-bind="foreach: pairableCharacters, delegatedHandler: 'click'">
+                <a class="mdl-navigation__link character" href="#"
+                   data-bind="text: name, css: { selected: isPaired }"
+                   data-click="selectPair">
+                </a>
+            </div>
+            <!--/ko-->
         </div>
         <main class="mdl-layout__content">
             <!--ko ifnot: selectedCharacters().length-->
@@ -31,6 +43,7 @@
             <!--/ko-->
             <!--ko if: selectedCharacters().length-->
             <div data-bind="foreach: selectedCharacters, delegatedHandler: 'click'">
+                <!--ko if: !isPaired() || (isPaired() && isPairMain())-->
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                         <character-card params="index: $index(), character: $data,
@@ -42,7 +55,7 @@
                         </character-card>
                     </div>
                     <!--ko if: isPaired-->
-                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone pair-card">
                         <character-card params="index: $index() + 'pair', character: pairPartner,
                         characters: $parent.characters,
                         classes: $parent.classes,
@@ -53,6 +66,7 @@
                     </div>
                     <!--/ko-->
                 </div>
+                <!--/ko-->
             </div>
             <!--/ko-->
         </main>

@@ -7,7 +7,7 @@
     ], function (ko, htmlString) {
         var CharacterCardViewModel = function (params) {
             this.cardIndex = params.index;
-            this.character = params.character;
+            this.character = ko.unwrap(params.character);
             this.characters = params.characters;
             this.classes = params.classes;
             this.skills = params.skills;
@@ -81,13 +81,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
                     
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.str();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairStr();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -110,13 +110,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.mag();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairMag();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -139,13 +139,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.skl();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairSkl();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -168,13 +168,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.spd();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairSpd();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -197,13 +197,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.lck();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairLck();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -226,13 +226,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.def();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairDef();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
@@ -255,13 +255,13 @@
                     var pairCharacter, pairClass;
                     var pairStat, pairUpStat;
 
-                    if (character.isPaired()) {
+                    if (character.isPaired() && character.isPairMain()) {
                         pairCharacter = character.pairPartner();
                         pairStat = pairCharacter.res();
-                        total += Math.min(3, pairStat);
 
                         pairClass = pairCharacter.selectedClass();
                         if (pairClass) {
+                            total += Math.min(3, pairStat);
                             pairUpStat = pairClass.pairRes();
                             if (pairUpStat > 0) {
                                 total += pairUpStat + 2;
