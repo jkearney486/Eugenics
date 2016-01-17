@@ -49,6 +49,7 @@
             this.baseClasses = ko.observableArray([]);
             this.promotedClasses = ko.observableArray([]);
             this.skills = ko.observableArray([]);
+            this.characterSkills = ko.observableArray([]);
             this.inheritedSkills = ko.observableArray([]);
             this.parents = ko.observableArray([]);
             this.selectedSkills = ko.observableArray([]);
@@ -420,8 +421,9 @@
                 .done(function (data) {
                     var skills = [];
                     ko.utils.arrayForEach(data, function (s) {
-                        that.skills.push(s);
+                        skills.push(s);
                     });
+                    that.skills(skills);
                 })
                 .fail(this.logError);
             },
@@ -432,8 +434,9 @@
                 .done(function (data) {
                     var skills = [];
                     ko.utils.arrayForEach(data, function (s) {
-                        that.skills.push(s);
+                        skills.push(s);
                     });
+                    that.characterSkills(skills);
                 })
                 .fail(this.logError);
             },

@@ -123,6 +123,7 @@
     <Content Include="Content\main.css" />
     <Content Include="packages.config" />
     <Content Include="Scripts\app.js" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\lib\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\lib\jquery-2.1.4.js" />
     <Content Include="Scripts\lib\jquery-2.1.4.min.js" />
