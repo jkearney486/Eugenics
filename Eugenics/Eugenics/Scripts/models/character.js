@@ -310,6 +310,7 @@
 
             this.selectedParentId.subscribe(function (value) {
                 this.selectedClass(null);
+                this.selectedSkills([]);
                 this.calculateStatMods();
                 if (value) {
                     this.getClassesChild();
