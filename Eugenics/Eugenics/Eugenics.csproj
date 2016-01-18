@@ -77,7 +77,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -124,9 +124,10 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\app.js" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
-    <None Include="Scripts\lib\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\lib\jquery-2.1.4.js" />
-    <Content Include="Scripts\lib\jquery-2.1.4.min.js" />
+    <None Include="Scripts\lib\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\lib\jquery-2.2.0.js" />
+    <Content Include="Scripts\lib\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\lib\jquery-2.2.0.min.map" />
     <Content Include="Scripts\lib\jquery-private.js" />
     <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\models\asset-flaw.js" />
@@ -141,7 +142,6 @@
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\lib\sprintf.min.js.map" />
-    <Content Include="Scripts\lib\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

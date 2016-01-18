@@ -5,8 +5,8 @@
         baseUrl: "Scripts/lib",
         paths: {
             "jquery": [
-                "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min",
-                "jquery-2.1.4.min"
+                "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min",
+                "jquery-2.2.0.min"
             ],
             "knockout": "knockout-3.4.0",
             "sprintf": "sprintf.min",

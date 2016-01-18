@@ -1,4 +1,5 @@
-﻿/// <reference path="lib/knockout-3.4.0.debug.js" />
+﻿/// <reference path="jquery-2.2.0.js" />
+/// <reference path="lib/knockout-3.4.0.debug.js" />
 /// <reference path="lib/knockout-delegatedEvents.js" />
 /// <reference path="lib/knockout-postbox.js" />
 /// <reference path="lib/jquery-2.1.4.intellisense.js" />
