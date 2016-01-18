@@ -453,6 +453,16 @@
                     ko.utils.arrayForEach(data, function (s) {
                         skills.push(s);
                     });
+                    if (that.mainParent().isChild()) {
+                        ko.utils.arrayForEach(that.mainParent().inheritedSkills(), function (s) {
+                            skills.push(s);
+                        });
+                    }
+                    if (that.selectedParent().isChild()) {
+                        ko.utils.arrayForEach(that.selectedParent().inheritedSkills(), function (s) {
+                            skills.push(s);
+                        });
+                    }
                     that.inheritedSkills(skills);
                 })
                 .fail(this.logError);
