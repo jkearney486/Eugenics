@@ -1,3 +1,6 @@
 ﻿<div class="skill">
-    <span data-bind="text: selectedSkill().name, attr: attr, css: skillCss"></span>
+    <span data-bind="text: selectedSkill().name, attr: mainAttr, css: skillCss"></span>
+    <span data-bind="attr: { 'for': nameplateId }" class="mdl-tooltip">
+        <span data-bind="text: selectedSkill().description"></span>
+    </span>
 </div>

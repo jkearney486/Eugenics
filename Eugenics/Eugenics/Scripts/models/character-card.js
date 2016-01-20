@@ -95,10 +95,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -124,10 +121,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -153,10 +147,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -182,10 +173,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -211,10 +199,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -240,10 +225,7 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -269,10 +251,98 @@
                         }
                     }
 
-                    if (total === 0) {
-                        return "";
-                    }
-                    return "+ " + total;
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.strTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.str);
+                    total += this.strBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.magTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.mag);
+                    total += this.magBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.sklTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.skl);
+                    total += this.sklBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.spdTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.spd);
+                    total += this.spdBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.lckTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.lck);
+                    total += this.lckBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.defTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.def);
+                    total += this.defBonus();
+
+                    return total;
+                },
+                deferEvaluation: true,
+                owner: this
+            });
+            this.resTotal = ko.computed({
+                read: function () {
+                    var total = 0;
+                    var character = this.character;
+
+                    total += ko.unwrap(character.res);
+                    total += this.resBonus();
+
+                    return total;
                 },
                 deferEvaluation: true,
                 owner: this

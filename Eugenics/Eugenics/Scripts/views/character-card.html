@@ -84,13 +84,23 @@
                             <div class="character-skills" data-bind="foreach: character.characterSkills">
                                 <skill-nameplate params="skills: $parent.skills, id: $data,
                                     attr: { 'data-click': 'selectSkill' },
-                                    selected: $parent.character.selectedSkills">
+                                    selected: $parent.character.selectedSkills,
+                                    str: $parent.strTotal, mag: $parent.magTotal,
+                                    skl: $parent.sklTotal, spd: $parent.spdTotal,
+                                    lck: $parent.lckTotal, def: $parent.defTotal, 
+                                    res: $parent.resTotal,
+                                    index: 'characterSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
                                 </skill-nameplate>
                             </div>
                             <div class="own-skills" data-bind="foreach: character.skills">
                                 <skill-nameplate params="skills: $parent.skills, id: $data, 
                                     attr: { 'data-click': 'selectSkill' }, 
-                                    selected: $parent.character.selectedSkills">
+                                    selected: $parent.character.selectedSkills,
+                                    str: $parent.strTotal, mag: $parent.magTotal,
+                                    skl: $parent.sklTotal, spd: $parent.spdTotal,
+                                    lck: $parent.lckTotal, def: $parent.defTotal, 
+                                    res: $parent.resTotal,
+                                    index: 'ownSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
                                 </skill-nameplate>
                             </div>
                             <div class="inherited-skills" data-bind="visible: character.isChild">
@@ -99,8 +109,13 @@
                                 </div>
                                 <div data-bind="foreach: character.inheritedSkills">
                                     <skill-nameplate params="skills: $parent.skills, id: $data, 
-                                        attr: { 'data-click': 'selectSkill' }, 
-                                        selected: $parent.character.selectedSkills">
+                                        attr: { 'data-click': 'selectSkill' },
+                                        selected: $parent.character.selectedSkills,
+                                        str: $parent.strTotal, mag: $parent.magTotal,
+                                        skl: $parent.sklTotal, spd: $parent.spdTotal,
+                                        lck: $parent.lckTotal, def: $parent.defTotal, 
+                                        res: $parent.resTotal,
+                                        index: 'inheritedSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
                                     </skill-nameplate>
                                 </div>
                             </div>
@@ -122,41 +137,81 @@
                     <div class="stat">
                         <span class="stat-type">Str</span>
                         <span class="stat-value" data-bind="text: character.str"></span>
-                        <span class="stat-bonus" data-bind="text: strBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: strBonus() > 0-->
+                            +
+                            <span data-bind="text: strBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Mag</span>
                         <span class="stat-value" data-bind="text: character.mag"></span>
-                        <span class="stat-bonus" data-bind="text: magBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: magBonus() > 0-->
+                            +
+                            <span data-bind="text: magBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Skl</span>
                         <span class="stat-value" data-bind="text: character.skl"></span>
-                        <span class="stat-bonus" data-bind="text: sklBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: sklBonus() > 0-->
+                            +
+                            <span data-bind="text: sklBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Spd</span>
                         <span class="stat-value" data-bind="text: character.spd"></span>
-                        <span class="stat-bonus" data-bind="text: spdBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: spdBonus() > 0-->
+                            +
+                            <span data-bind="text: spdBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Lck</span>
                         <span class="stat-value" data-bind="text: character.lck"></span>
-                        <span class="stat-bonus" data-bind="text: lckBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: lckBonus() > 0-->
+                            +
+                            <span data-bind="text: lckBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Def</span>
                         <span class="stat-value" data-bind="text: character.def"></span>
-                        <span class="stat-bonus" data-bind="text: defBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: defBonus() > 0-->
+                            +
+                            <span data-bind="text: defBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                     <div class="stat">
                         <span class="stat-type">Res</span>
                         <span class="stat-value" data-bind="text: character.res"></span>
-                        <span class="stat-bonus" data-bind="text: resBonus"></span>
+                        <span class="stat-bonus">
+                            <!--ko if: resBonus() > 0-->
+                            +
+                            <span data-bind="text: resBonus"></span>
+                            <!--/ko-->
+                        </span>
                     </div>
                 </div>
                 <div class="selected-skills" data-bind="foreach: character.selectedSkills, delegatedHandler: 'click'">
-                    <skill-nameplate params="skills: $parent.skills, id: $data.id, attr: { 'data-click': 'removeSkill' }">
+                    <skill-nameplate params="skills: $parent.skills, id: $data.id,
+                        attr: { 'data-click': 'removeSkill' }, str: $parent.strTotal,
+                        mag: $parent.magTotal, skl: $parent.sklTotal,
+                        spd: $parent.spdTotal, lck: $parent.lckTotal,
+                        def: $parent.defTotal, res: $parent.resTotal,
+                        index: 'selectedSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
                     </skill-nameplate>
                 </div>
             </div>
