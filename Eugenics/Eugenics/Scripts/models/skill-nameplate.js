@@ -59,10 +59,19 @@
                 deferEvaluation: true,
                 owner: this
             });
-            this.nameplateId = ko.computed({
+            this.title = ko.computed({
                 read: function () {
-                    return "skillNameplate" + ko.unwrap(this.skillId) +
-                        ko.unwrap(this.nameplateIndex);
+                    var title = "";
+                    var rate = this.activationRate();
+
+                    title += ko.unwrap(this.selectedSkill().description);
+
+                    if (rate) {
+                        title += "\n\n" + "Activation Rate: ";
+                        title += rate + "%";
+                    }
+                    
+                    return title;
                 },
                 deferEvaluation: true,
                 owner: this
@@ -71,7 +80,6 @@
                 read: function () {
                     var attr = {};
                     var passedAttr = ko.unwrap(this.attr);
-                    var id;
 
                     // bring in all attributes passed over
                     for (var i in passedAttr) {
@@ -80,7 +88,7 @@
                         }
                     }
 
-                    attr.id = ko.unwrap(this.nameplateId);
+                    attr.title = this.title;
 
                     return attr;
                 },
@@ -90,12 +98,7 @@
         };
 
         return {
-            viewModel: {
-                createViewModel: function (params, componentInfo) {
-                    componentHandler.upgradeElements(componentInfo.element);
-                    return new SkillNameplateViewModel(params);
-                }
-            },
+            viewModel: SkillNameplateViewModel,
             template: htmlString
         };
     });

@@ -88,8 +88,7 @@
                                     str: $parent.strTotal, mag: $parent.magTotal,
                                     skl: $parent.sklTotal, spd: $parent.spdTotal,
                                     lck: $parent.lckTotal, def: $parent.defTotal, 
-                                    res: $parent.resTotal,
-                                    index: 'characterSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
+                                    res: $parent.resTotal">
                                 </skill-nameplate>
                             </div>
                             <div class="own-skills" data-bind="foreach: character.skills">
@@ -99,8 +98,7 @@
                                     str: $parent.strTotal, mag: $parent.magTotal,
                                     skl: $parent.sklTotal, spd: $parent.spdTotal,
                                     lck: $parent.lckTotal, def: $parent.defTotal, 
-                                    res: $parent.resTotal,
-                                    index: 'ownSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
+                                    res: $parent.resTotal">
                                 </skill-nameplate>
                             </div>
                             <div class="inherited-skills" data-bind="visible: character.isChild">
@@ -114,8 +112,7 @@
                                         str: $parent.strTotal, mag: $parent.magTotal,
                                         skl: $parent.sklTotal, spd: $parent.spdTotal,
                                         lck: $parent.lckTotal, def: $parent.defTotal, 
-                                        res: $parent.resTotal,
-                                        index: 'inheritedSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
+                                        res: $parent.resTotal">
                                     </skill-nameplate>
                                 </div>
                             </div>
@@ -210,8 +207,7 @@
                         attr: { 'data-click': 'removeSkill' }, str: $parent.strTotal,
                         mag: $parent.magTotal, skl: $parent.sklTotal,
                         spd: $parent.spdTotal, lck: $parent.lckTotal,
-                        def: $parent.defTotal, res: $parent.resTotal,
-                        index: 'selectedSkill' + $parent.character.id() + $parent.cardIndex() + $index()">
+                        def: $parent.defTotal, res: $parent.resTotal">
                     </skill-nameplate>
                 </div>
             </div>

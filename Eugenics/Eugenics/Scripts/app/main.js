@@ -20,7 +20,8 @@
         ClassViewModel,
         SkillViewModel,
         AssetFlawViewModel) {
-        
+        ko.options.deferUpdates = true;
+
         var EugenicsViewModel = function () {
             this.pairingCharacter = ko.observable();
             this.characters = ko.observableArray([]);
