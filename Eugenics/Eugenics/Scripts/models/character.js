@@ -463,6 +463,7 @@
                             skills.push(s);
                         });
                     }
+                    skills = ko.utils.arrayGetDistinctValues(skills);
                     that.inheritedSkills(skills);
                 })
                 .fail(this.logError);
